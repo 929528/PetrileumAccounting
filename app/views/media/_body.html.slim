@@ -1,0 +1,2 @@
+.media-body
+	== render "#{item.to_partial_path.split('/').slice(0...-1).join('/')}/form", item: item

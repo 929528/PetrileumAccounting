@@ -1,0 +1,5 @@
+ul.nav.nav-tabs
+	== render partial: 'nested_tabs/header', collection: items, as: :item
+	li = link_to "+", path_to_add, remote: true
+.tab-content
+	== render partial: 'nested_tabs/body', collection: items, as: :item

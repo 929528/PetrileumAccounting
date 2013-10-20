@@ -1,0 +1,5 @@
+= provide :title, "Справочник: #{@Catalog.model_name.human count: '2'}"
+= stored_control_panel
+.content
+	ul.media-list id="list" 
+		== render(@catalogs) || 'Элементов нет' 

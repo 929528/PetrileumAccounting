@@ -1,0 +1,6 @@
+<%- if @catalog.errors.any? %>
+$(".media-window[timestamp=<%= @timestamp%>] > .form-errors:first").html("<%=j render "media/error_messages", name: @catalog %>").autohide(1000);
+<%-else %>
+$(".media-window[timestamp=<%= @timestamp%>]").mw('hide');
+$("#flash_notice").html("<%=j render '/flash_notice' %>").autohide(1000);
+<%-end%>

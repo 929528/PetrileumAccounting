@@ -1,10 +1,17 @@
 PetroleumAccounting::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  namespace :catalogs do 
+    resources :customers , controller: 'catalogs'
+  end
+  get 'new_customer_contract' => 'apps#new_customer_contract'
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
+  root 'sessions#new'
+  get 'profile', to: 'users#show'
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/signin' => 'sessions#new', via: :get
+  match '/signout' => 'sessions#destroy', via: :delete
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

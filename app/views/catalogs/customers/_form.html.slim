@@ -1,0 +1,14 @@
+= simple_form_for setup_customers_form(item), html: {class: "form-inline", novalidate: true}, remote: true do |f|
+	.tabbable
+		ul.nav.nav-tabs
+			li.active
+				a href="#customer_#{item.id}_tab_main" data-toggle="tab" Основная вкладка
+			li
+				a href="#customer_#{item.id}_tab_contracts" data-toggle="tab" Договора
+		.tab-content
+			.tab-pane.active id="customer_#{item.id}_tab_main"
+				= f.input :name, label: "Наименование"
+				= f.input :fullname, label: "Полное наименование"
+			.tab-pane id="customer_#{item.id}_tab_contracts"
+				.tabbable.tabs-left
+					== render partial: 'nested_tabs/tabs', locals: {items: item.contracts, path_to_add: new_customer_contract_path(customer_id: item.id)}

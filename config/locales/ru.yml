@@ -1,0 +1,15 @@
+ru: 
+  activerecord:
+    models:
+      catalogs/customer:
+        one: Клиент
+        other: Клиенты
+      catalogs/organization:
+        one: Организация
+        other: Организации
+      catalogs/user:
+        one: Пользователь
+        other: Пользователи
+      catalogs/product:
+        one: Продукт
+        other: Продукты

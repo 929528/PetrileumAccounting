@@ -1,0 +1,8 @@
+= provide :title, 'Авторизация пользователя'
+== render '/flash_notice'
+.content
+	.row-fluid
+		= simple_form_for :session, url: sessions_path do |f|
+			= f.input :name
+			= f.input :password
+			= f.submit

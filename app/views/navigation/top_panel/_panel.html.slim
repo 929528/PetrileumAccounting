@@ -1,0 +1,6 @@
+.navbar.navbar-fixed-top
+	#flash_notice
+		== render '/flash_notice'
+	= yield :control_panel
+.container
+	#new-media-window.media-window.hide

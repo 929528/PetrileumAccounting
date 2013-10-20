@@ -1,0 +1,9 @@
+.navbar.navbar-fixed-bottom
+	.navbar-inner
+		.container
+			ul.nav
+				== render "navigation/top_panel/catalogs"
+				li.divider-vertical
+			ul.nav.pull-right
+				li.divider-vertical
+				li = link_to(content_tag(:i,"",class: "icon-user") +  " " + current_user.name.to_s + " | Выход",signout_path , method: "delete")

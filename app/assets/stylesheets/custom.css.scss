@@ -1,0 +1,16 @@
+@import "bootstrap";
+@import "font-awesome";
+@import 're_bootstrap';
+@import 'main';
+
+#flash_notice, .form-errors { &:hover { cursor: wait } }
+
+.media-window {
+	padding: 10px;
+	background-color: #f9f9f9;
+	.media-footer {
+		.btn {
+			margin-left: 5px;
+		}
+	}
+}

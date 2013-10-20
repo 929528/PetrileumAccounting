@@ -1,0 +1,7 @@
+= content_tag 'li', class: 'media', data: {path: edit_catalogs_customer_path(customer)}, onclick: '$(this).mw("request")' do
+	.media-body
+		.media-heading 
+			= "№: #{customer.id} Полное наименование: #{customer.fullname}"
+			.pull-right
+				small.date = customer.created_at.strftime "Создан: %d/%m/%Y"
+	.media-window.hide

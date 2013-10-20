@@ -1,0 +1,42 @@
+@mixin background-hover {
+	background-color: #0081c2;
+	background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+	background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+	background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+	background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF0088CC', endColorstr='#FF0077B3', GradientType=0);
+}
+body {
+	background-color: rgba(184, 184, 184, 0.3) ;
+	background-image: linear-gradient(white 2px, transparent 2px),
+	linear-gradient(90deg, white 2px, transparent 2px),
+	linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+	linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+	background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
+	background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
+#main {
+	#push {
+		height: 50px;
+	}
+	& > .content {
+		margin-top: 50px;
+		.media-list {
+			.media {
+				background-color: white;
+				margin: 0;
+				// &:hover { cursor: pointer }
+			}
+			li{
+				padding: 0.5em;
+			}
+		}
+	}
+}
+#new-media-window {
+	position: fixed;
+	margin-top: 40px;
+	@extend .container;
+}
