@@ -2,9 +2,10 @@ PetroleumAccounting::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   namespace :catalogs do 
-    resources :customers , controller: 'catalogs'
+    resources :customers, :organizations , controller: 'catalogs'
   end
   get 'new_customer_contract' => 'apps#new_customer_contract'
+  get 'new_organization_department' => 'apps#new_organization_department'
 
   # You can have the root of your site routed with "root"
   root 'sessions#new'

@@ -9,7 +9,6 @@ class Catalogs::CatalogsController < ApplicationController
 	end
 	def create
 		@catalog = @Catalog.new catalog_params
-		@dom = params[:dom_id]
 		flash.now[:success] = "#{@Catalog.model_name.human}: #{@catalog.name} создан" if @catalog.save
 	end
 	def edit

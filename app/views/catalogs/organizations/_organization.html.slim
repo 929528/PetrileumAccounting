@@ -1,0 +1,7 @@
+= content_tag 'li', class: 'media', data: {path: edit_catalogs_organization_path(organization)}, onclick: '$(this).mw("request")' do
+	.media-body
+		.media-heading 
+			= "№: #{organization.id} Полное наименование: #{organization.fullname}"
+			.pull-right
+				small.date = organization.created_at.strftime "Создан: %d/%m/%Y"
+	.media-window.hide

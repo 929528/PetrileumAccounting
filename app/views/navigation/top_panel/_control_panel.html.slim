@@ -4,4 +4,4 @@
 		ul.nav.pull-right
 			li
 				- if panel[:btn][:add]
-						= link_to(content_tag(:i,"",class: "icon-plus-sign") + " #{panel[:btn][:add][:title]}", action: "new", remote: true )
+						= link_to(content_tag(:i,"",class: "icon-plus-sign") + " #{panel[:btn][:add][:title]}", "#{Catalogs.catalog_path @Catalog, :new}", remote: true )
