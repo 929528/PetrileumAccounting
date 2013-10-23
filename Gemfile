@@ -42,9 +42,9 @@ group :development, :test do
 	gem 'binding_of_caller'
 	gem 'meta_request'
 end
-gem 'thin'
-gem 'binding_of_caller'
-gem 'meta_request'
+group :production do
+  gem 'rails_12factor'
+end
 # Use unicorn as the app server
 # gem 'unicorn'
 
