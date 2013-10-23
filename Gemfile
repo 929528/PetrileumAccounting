@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
-       # See https:/
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 # Use SCSS for stylesheets
@@ -43,9 +42,9 @@ group :development, :test do
 	gem 'binding_of_caller'
 	gem 'meta_request'
 end
-group :production do
-  gem 'pg', '0.12.2'
-end
+gem 'thin'
+gem 'binding_of_caller'
+gem 'meta_request'
 # Use unicorn as the app server
 # gem 'unicorn'
 
