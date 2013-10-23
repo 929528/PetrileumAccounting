@@ -43,6 +43,9 @@ group :development, :test do
 	gem 'binding_of_caller'
 	gem 'meta_request'
 end
+group :production do
+  gem 'pg', '0.12.2'
+end
 # Use unicorn as the app server
 # gem 'unicorn'
 
