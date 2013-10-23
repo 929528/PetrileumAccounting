@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-
+ruby '2.0.0'
+       # See https:/
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 # Use SCSS for stylesheets
@@ -38,11 +39,6 @@ gem "slim-rails", :require => false
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 group :development, :test do
-	gem 'thin'
-	gem 'binding_of_caller'
-	gem 'meta_request'
-end
-group :production do
 	gem 'thin'
 	gem 'binding_of_caller'
 	gem 'meta_request'
