@@ -3,13 +3,19 @@ class Catalogs::User < ActiveRecord::Base
 
 	has_secure_password
 
-	validates :name , length: {maximum: 30, minimum: 4}, uniqueness: true
+	validates :name, presence: true, length: {maximum: 30, minimum: 4}, uniqueness: true
 	validates :email, format: { with: VALID_EMAIL_REGEX },
 	uniqueness: { case_sensitive: false }
+	validates :password, presence: true, length: {minimum: 6, maximum: 15}
+	validates :password_confirmation, presence: true
 
 	before_save do |user|
 		user.email.downcase!
 		user.send :create_remember_token
+	end
+
+	def self.strong_params
+		return [:name, :surname, :email, :password, :password_confirmation]
 	end
 
 	private 

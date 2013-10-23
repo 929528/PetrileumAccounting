@@ -13,3 +13,6 @@ ru:
       catalogs/product:
         one: Продукт
         other: Продукты
+      documents/talons_issues:
+        one: Реализация талонов
+        other: Реализации талонов

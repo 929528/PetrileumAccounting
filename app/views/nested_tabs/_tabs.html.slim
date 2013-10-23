@@ -1,5 +1,8 @@
-ul.nav.nav-tabs
-	== render partial: 'nested_tabs/header', collection: items, as: :item
-	li = link_to "+", path_to_add, remote: true
-.tab-content
-	== render partial: 'nested_tabs/body', collection: items, as: :item
+.tabbable.tabs-left
+	ul.nav.nav-tabs
+		== render partial: 'nested_tabs/header', collection: items, as: :item
+		li 
+			a.text-center onclick='$(this).mw("add_tab")' data-path="#{add_path}"
+				i.icon-plus
+	.tab-content
+		== render partial: 'nested_tabs/body', collection: items, as: :item

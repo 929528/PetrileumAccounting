@@ -1,4 +1,4 @@
-= simple_form_for setup_customers_form(item), html: {class: "form-inline", novalidate: true}, remote: true do |f|
+= simple_form_for item, html: {class: "form-horizontal"}, remote: true do |f|
 	.tabbable
 		ul.nav.nav-tabs
 			li.active
@@ -10,5 +10,4 @@
 				= f.input :name, label: "Наименование"
 				= f.input :fullname, label: "Полное наименование"
 			.tab-pane id="customer_#{item.id}_tab_contracts"
-				.tabbable.tabs-left
-					== render partial: 'nested_tabs/tabs', locals: {items: item.contracts, path_to_add: new_customer_contract_path(customer_id: item.id)}
+				== render partial: 'nested_tabs/tabs', locals: {items: item.contracts, add_path: new_contracts_catalogs_customers_path}

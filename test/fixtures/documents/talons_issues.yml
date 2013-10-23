@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  department_id: 
+  contract_id: 
+  user_id: 
+  expires: 2013-10-23 12:11:32
+  held: false
+
+two:
+  department_id: 
+  contract_id: 
+  user_id: 
+  expires: 2013-10-23 12:11:32
+  held: false

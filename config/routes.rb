@@ -1,12 +1,18 @@
 PetroleumAccounting::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  namespace :catalogs do 
-    resources :customers, :organizations , controller: 'catalogs'
-  end
-  get 'new_customer_contract' => 'apps#new_customer_contract'
-  get 'new_organization_department' => 'apps#new_organization_department'
 
+  Catalogs::KNOWN_CATALOGS.each do |catalog|
+    resources catalog.model_name.route_key.to_sym, controller: 'catalogs' do
+      catalog.nested_attributes_options.keys.each {|model| get "new_#{model}" => "catalogs#add_#{model}", on: :collection}
+    end
+  end
+
+  Documents::KNOWN_DOCUMENTS.each do |document|
+    resources document.model_name.route_key.to_sym, controller: 'documents' do
+      document.nested_attributes_options.keys.each {|model| get "new_#{model}" => "documents#new_#{model}", on: :collection}
+    end
+  end
   # You can have the root of your site routed with "root"
   root 'sessions#new'
   get 'profile', to: 'users#show'

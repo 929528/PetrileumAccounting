@@ -1,2 +1,2 @@
-.tab-pane class="#{item_counter == 0 ? "active" : ""}" id="#{item.class.name.gsub('::','_').downcase}_#{item.id}_tab#{item_counter}"
-	== render "#{item.to_partial_path.split('/').slice(0...-1).join('/')}/form", item: item
+.tab-pane class="#{item_counter == 0 ? "active" : ""}" id="#{item.class.model_name.element}_#{item.id}_tab#{item_counter}"
+	== render "#{item.class.model_name.collection}/form", item: item

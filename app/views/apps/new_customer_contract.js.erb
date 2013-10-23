@@ -1,2 +1,0 @@
-$('#<%= "customer_#{@customer.id}_tab_contracts" %> ul li:last').before("<%=j render partial: 'nested_tabs/header', locals: {item: @contract, item_counter: @id}%>");
-$('#<%= "customer_#{@customer.id}_tab_contracts" %> .tab-content').append("<%=j render partial: 'nested_tabs/body', locals: {item: @contract, item_counter: @id} %>");

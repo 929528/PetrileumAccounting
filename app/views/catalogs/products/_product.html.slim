@@ -1,0 +1,7 @@
+= content_tag 'li', class: 'media', data: {path: edit_catalogs_product_path(product)} do
+	.media-body
+		.media-heading 
+			= "№: #{product.id} Полное наименование: #{product.fullname}"
+			.pull-right
+				small.date = product.created_at.strftime "Создан: %d/%m/%Y"
+	.media-window.hide

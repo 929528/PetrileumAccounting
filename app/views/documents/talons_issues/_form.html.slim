@@ -1,0 +1,8 @@
+.header
+	= simple_fields_for :talon do |f|
+		= f.input :barcode, input_html: {data: {path: "#{new_actions_documents_talons_issues_path}"}}
+.body
+	| BODY
+	= simple_form_for item, as: :document, remote: true do |d|
+		.actions
+			== render item.actions

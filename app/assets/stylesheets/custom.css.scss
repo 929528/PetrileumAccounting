@@ -5,9 +5,20 @@
 
 #flash_notice, .form-errors { &:hover { cursor: wait } }
 
+.action {
+	@extend .alert-success;
+	padding: 5px;
+}
+
 .media-window {
 	padding: 10px;
 	background-color: #f9f9f9;
+	.media-body {
+		.body {
+			max-height: 300px;
+			overflow-y: auto;
+		}
+	}
 	.media-footer {
 		.btn {
 			margin-left: 5px;

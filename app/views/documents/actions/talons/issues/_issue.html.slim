@@ -1,0 +1,10 @@
+.action
+	.talon
+		.barcode = issue.talon.barcode
+		.state = issue.talon.state.name
+		.amount = issue.talon.amount.value
+		.product = issue.talon.product.name
+		.document = issue.talons_issue
+= simple_fields_for "document[actions_attributes][#{issue.talon.barcode}]", issue do |f|
+	= f.input_field :id, as: :hidden
+	= f.input_field :talon_barcode, as: :hidden

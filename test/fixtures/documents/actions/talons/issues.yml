@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  talons_issue_id: 
+  talon_id: 
+  price: 9.99
+  expires: 2013-10-23 12:23:59
+
+two:
+  talons_issue_id: 
+  talon_id: 
+  price: 9.99
+  expires: 2013-10-23 12:23:59

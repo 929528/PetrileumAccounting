@@ -1,2 +1,0 @@
-$('#<%= "organization_#{@organization.id}_tab_departments" %> ul li:last').before("<%=j render partial: 'nested_tabs/header', locals: {item: @department, item_counter: @id}%>");
-$('#<%= "organization_#{@organization.id}_tab_departments" %> .tab-content').append("<%=j render partial: 'nested_tabs/body', locals: {item: @department, item_counter: @id} %>");

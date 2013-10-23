@@ -1,4 +1,4 @@
-= simple_form_for setup_organizations_form(item), html: {class: "form-inline", novalidate: true}, remote: true do |f|
+= simple_form_for item, html: {class: "form-horizontal"}, remote: true do |f|
 	.tabbable
 		ul.nav.nav-tabs
 			li.active
@@ -10,5 +10,4 @@
 				= f.input :name, label: "Наименование"
 				= f.input :fullname, label: "Полное наименование"
 			.tab-pane id="organization_#{item.id}_tab_departments"
-				.tabbable.tabs-left
-					== render partial: 'nested_tabs/tabs', locals: {items: item.departments, path_to_add: new_organization_department_path(organization_id: item.id)}
+				== render partial: 'nested_tabs/tabs', locals: {items: item.departments, add_path: new_departments_catalogs_organizations_path}

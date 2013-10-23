@@ -1,0 +1,3 @@
+var source = $('.media-window[timestamp="<%= @timestamp%>"]').find("#tabs_<%= item.class.model_name.element %>");
+source.find("ul li:last").before("<%=j render partial: 'nested_tabs/header', locals: {item: item, item_counter: @id}%>");
+source.find(".tab-content").append("<%=j render partial: 'nested_tabs/body', locals: {item: item, item_counter: @id}%>");

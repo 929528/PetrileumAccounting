@@ -1,4 +1,4 @@
-= content_tag 'li', class: 'media', data: {path: edit_catalogs_organization_path(organization)}, onclick: '$(this).mw("request")' do
+= content_tag 'li', class: 'media', data: {path: edit_catalogs_organization_path(organization)} do
 	.media-body
 		.media-heading 
 			= "№: #{organization.id} Полное наименование: #{organization.fullname}"
