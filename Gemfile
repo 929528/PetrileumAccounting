@@ -38,9 +38,14 @@ gem "slim-rails", :require => false
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 group :development, :test do
-    gem 'thin'
-    gem 'binding_of_caller'
-    gem 'meta_request'
+	gem 'thin'
+	gem 'binding_of_caller'
+	gem 'meta_request'
+end
+group :production do
+	gem 'thin'
+	gem 'binding_of_caller'
+	gem 'meta_request'
 end
 # Use unicorn as the app server
 # gem 'unicorn'
