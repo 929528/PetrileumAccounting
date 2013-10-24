@@ -1,5 +1,1 @@
-if ($('#new-media-window').is(':hidden')) {
-$('#new-media-window').html("<%=j render 'media/media', item: item %>").attr('timestamp', $.now()).mw('show');
-} else {
-	alert('Обработать уже открытую форму');
-};
+$('.media-window[timestamp="<%= @timestamp %>"]').html("<%=j render 'media/media', item: item %>").media('show');

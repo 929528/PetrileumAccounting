@@ -2,7 +2,6 @@
 	ul.nav.nav-tabs
 		== render partial: 'nested_tabs/header', collection: items, as: :item
 		li 
-			a.text-center onclick='$(this).mw("add_tab")' data-path="#{add_path}"
-				i.icon-plus
+			= content_tag :a, "+", class: 'btn', onclick: "$(this).closest('.media-window').media('request', \"#{add_path}\")"
 	.tab-content
 		== render partial: 'nested_tabs/body', collection: items, as: :item

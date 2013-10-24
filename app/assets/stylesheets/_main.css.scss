@@ -35,6 +35,13 @@ body {
 	background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
 	background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
 }
+.fixed-top {
+	position: fixed;
+	right: 0;
+	left: 0;
+	z-index: 1030;
+	margin-bottom: 0;
+}
 #main {
 	#push {
 		height: 50px;
@@ -42,37 +49,26 @@ body {
 	& > .content {
 		margin-top: 50px;
 		.media-list {
-			.media {
+			& > .media {
+				border-left:solid 3px #0081c2;
 				margin-bottom: 2px;
 				margin-top: 0px;
-				margin-left: 2px;
 				background-color: white;
 				-webkit-transition:all 0.2s ease;
 				-moz-transition:all 0.3s ease;
 				&:hover { 
-					transform: translate(-5px,0);
-					-webkit-transform: translate(-5px,0); 
-					-o-transform: translate(-5px,0); 
-					-moz-transform: translate(-5px,0);
-
-					margin-left: 0px;
-
+					border-left:solid 3px white;
 					cursor: pointer;
 					@include background-hover;
-					& > .media-body {
-						color: white;
-					}
+					& > .media-body {color: white}
 				}
+			}
+			& > .media.active {
+				@extend .media:hover;
 			}
 			& > li{
 				padding: 0.5em;
 			}
 		}
 	}
-}
-#new-media-window {
-	position: fixed;
-	margin-top: 40px;
-	@extend .container;
-	@include raised;
 }

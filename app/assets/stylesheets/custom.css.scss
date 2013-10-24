@@ -3,6 +3,20 @@
 @import 're_bootstrap';
 @import 'main';
 
+@mixin raised {
+	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
+	box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+	&:before, &:after {
+		content:"";
+		position:absolute;
+		z-index:-2;
+	}
+} 
+
 #flash_notice, .form-errors { &:hover { cursor: wait } }
 
 .action {
@@ -10,13 +24,29 @@
 	padding: 5px;
 }
 
+#new-media {
+	@include raised; 
+	border-left:solid 5px #0081c2;
+	border-right:solid 5px #0081c2;
+	border-bottom:solid 5px #0081c2;
+}
 .media-window {
-	padding: 10px;
-	background-color: #f9f9f9;
-	.media-body {
-		.body {
-			max-height: 300px;
-			overflow-y: auto;
+	.tabbable {
+		li.active a {
+			@include background-hover;
+			color: white;
+		}
+	}
+	.media {
+		padding: 20px 5px 20px 5px;
+		background-color: white;
+		.media-body {
+			.body {
+				padding-top: 5px;
+				padding-bottom: 5px;
+				max-height: 300px;
+				overflow-y: auto;
+			}
 		}
 	}
 	.media-footer {

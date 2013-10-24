@@ -1,7 +1,8 @@
-.navbar-inner
-	.container
-		a.brand = yield :title
-		ul.nav.pull-right
-			li
-				- if panel[:btn][:add]
-						= link_to(content_tag(:i,"",class: "icon-plus-sign") + " #{panel[:btn][:add][:title]}", panel[:btn][:add][:path], remote: true )
+.navbar
+	.navbar-inner
+		.container
+			a.brand = yield :title
+			ul.nav.pull-right
+				li
+					- if panel[:btn][:add]
+						= content_tag :button, "#{panel[:btn][:add][:title]}", class: 'btn', onclick: "$('#control-panel').find('.media-window').media('request', \"#{panel[:btn][:add][:path]}\")"
