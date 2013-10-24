@@ -1,0 +1,10 @@
+.action
+	.talon
+		.barcode = repaid.talon.barcode
+		.state = repaid.talon.state.name
+		.amount = repaid.talon.amount.value
+		.product = repaid.talon.product.name
+		.document = repaid.talons_repaid
+= simple_fields_for "document[actions_attributes][#{repaid.talon.barcode}]", repaid do |f|
+	= f.input_field :id, as: :hidden
+	= f.input_field :talon_barcode, as: :hidden

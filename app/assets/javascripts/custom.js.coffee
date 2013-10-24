@@ -6,7 +6,7 @@ $ ->
 
 	$('.media-window').on 'show', ->
 		that = $(this)
-		$('#talon_barcode').on 'keypress', (event) ->
+		that.find(".barcode input").on 'keypress', (event) ->
 			if event.which == 13
 				that.mw 'request_action', $(this).data('path'), barcode: $(this).val()
 				$(this).val ''

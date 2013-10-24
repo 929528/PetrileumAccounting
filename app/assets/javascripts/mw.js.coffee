@@ -1,4 +1,8 @@
 methods = 
+	init_element: ->
+		that = this
+		this.on 'click', ->
+			that.mw('request', $(this).data('path'))
 	show: ->
 		that = this
 		that.data 'show', true

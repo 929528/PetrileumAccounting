@@ -5,13 +5,11 @@ class DocumentsController < ApplicationController
 	end
 	def new
 		document = @Document.new
-		@timestamp = params[:timestamp]
 		render partial: 'media/js/new', locals: {item: document}
 	end
 	def create
 		document = @Document.new document_params
 		document.status = params[:status]
-		@timestamp = params[:timestamp]
 		if document.save
 			flash.now[:success] = "#{@Document.model_name.human}: #{document} создан"
 			render partial: 'media/js/create', locals: {item: document}
@@ -22,7 +20,6 @@ class DocumentsController < ApplicationController
 	def update
 		document = @Document.find params[:id]
 		document.status = params[:status]
-		@timestamp = params[:timestamp]
 		if document.valid? && document.update_attributes(document_params)
 			flash.now[:success] = "#{@Document.model_name.human}: #{document} обновлен"
 			render partial: 'media/js/update', locals: {item: document}
@@ -32,13 +29,11 @@ class DocumentsController < ApplicationController
 	end
 	def edit
 		document = @Document.find params[:id]
-		@timestamp = params[:timestamp]
 		render partial: 'media/js/edit', locals: {item: document}
 	end
 	def new_actions
 		document = @Document.new
 		@action = document.actions.build talon_barcode: params[:request][:barcode]
-		@timestamp = params[:timestamp]
 		unless @action.valid?
 			render partial: 'media/js/errors', locals: {item: @action}
 		end
@@ -51,6 +46,7 @@ class DocumentsController < ApplicationController
 	end
 
 	def initialize_document
+		@timestamp = params[:timestamp]
 		str, params = request.path.split('?')
 		model_name = str.split('/')[1]
 		unless @Document = Documents::KNOWN_DOCUMENTS.find {|i| i.model_name.route_key == model_name}

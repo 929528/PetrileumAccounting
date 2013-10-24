@@ -1,0 +1,7 @@
+= content_tag 'li', class: 'media', data: {path: edit_documents_talons_repaid_path(talons_repaid)} do
+	.media-body
+		.media-heading 
+			= "№: #{talons_repaid.id} Полное наименование: #{talons_repaid}"
+			.pull-right
+				small.date = talons_repaid.created_at.strftime "Создан: %d/%m/%Y"
+	.media-window.hide

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  talons_repaid_id: 
+  talon_id: 
+  price: 9.99
+
+two:
+  talons_repaid_id: 
+  talon_id: 
+  price: 9.99
