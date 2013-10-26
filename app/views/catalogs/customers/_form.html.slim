@@ -1,13 +1,13 @@
-= simple_form_for item, as: :catalog, html: {class: "form-horizontal"}, remote: true do |f|
+= simple_form_for @customer, as: :customer, html: {class: "form-horizontal"}, remote: true do |f|
 	.tabbable
 		ul.nav.nav-tabs
 			li.active
-				a href="#customer_#{item.id}_tab_main" data-toggle="tab" Основная вкладка
+				a href="#customer_#{@customer.id}_tab_main" data-toggle="tab" Основная вкладка
 			li
-				a href="#customer_#{item.id}_tab_contracts" data-toggle="tab" Договора
+				a href="#customer_#{@customer.id}_tab_contracts" data-toggle="tab" Договора
 		.tab-content
-			.tab-pane.active id="customer_#{item.id}_tab_main"
+			.tab-pane.active id="customer_#{@customer.id}_tab_main"
 				= f.input :name, label: "Наименование"
 				= f.input :fullname, label: "Полное наименование"
-			.tab-pane id="customer_#{item.id}_tab_contracts"
-				== render partial: 'nested_tabs/tabs', locals: {items: item.contracts, add_path: new_contracts_catalogs_customers_path}
+			.tab-pane id="customer_#{@customer.id}_tab_contracts"
+				== render partial: 'nested_tabs/tabs', locals: {items: @customer.contracts, new_path:  new_contract_catalogs_customers_path}

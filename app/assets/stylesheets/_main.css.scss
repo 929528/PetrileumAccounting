@@ -50,14 +50,12 @@ body {
 		margin-top: 50px;
 		.media-list {
 			& > .media {
-				border-left:solid 3px #0081c2;
 				margin-bottom: 2px;
 				margin-top: 0px;
 				background-color: white;
 				-webkit-transition:all 0.2s ease;
 				-moz-transition:all 0.3s ease;
 				&:hover { 
-					border-left:solid 3px white;
 					cursor: pointer;
 					@include background-hover;
 					& > .media-body {color: white}

@@ -1,9 +1,18 @@
 .header
+	| HEADER
 	.barcode
 		= simple_fields_for :talon do |f|
-			= f.input :barcode, input_html: {data: {path: "#{new_actions_documents_talons_issues_path}"}}
+			= f.input :barcode, input_html: {data: {path: "#{new_issue_documents_talons_issues_path}"}}
 .body
 	| BODY
-	= simple_form_for item, as: :document, remote: true do |d|
+	= simple_form_for setup_form(@TalonsIssue), as: :document, remote: true do |d|
+		.client
+			.row-fluid
+					.span6
+						| CLIENT
+						= d.input :customer_name, input_html: {data: {provide: "typeahead", source: catalogs_customers_path, target: "#contract_for_#{@TalonsIssue.id}", update: get_contracts_catalogs_customers_path}}
+					.span6
+						| CONTRACT
+						= d.input :contract_id, as: :select, collection: @TalonsIssue.contract.customer.contracts, input_html: {id: "contract_for_#{@TalonsIssue.id}"}
 		.actions
-			== render item.actions
+				== render @TalonsIssue.issues

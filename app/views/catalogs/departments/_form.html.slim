@@ -1,3 +1,3 @@
-= simple_fields_for "catalog[departments_attributes][#{item.new_record? ? Time.now.to_i : item.id}]", item do |f|
+= simple_fields_for "organization[departments_attributes][#{item.new_record? ? Time.now.to_i : item.id}]", item do |f|
 	= f.input_field :id, as: :hidden
 	= f.input :name, label: "Наименование"

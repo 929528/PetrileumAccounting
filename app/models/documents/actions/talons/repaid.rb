@@ -1,5 +1,5 @@
 class Documents::Actions::Talons::Repaid < ActiveRecord::Base
-	belongs_to :talons_repaid, inverse_of: :actions
+	belongs_to :talons_repaid, inverse_of: :repaids
 	belongs_to :talon, class_name: 'Catalogs::Talon', validate: true
 
 	validate :correct_talon_state

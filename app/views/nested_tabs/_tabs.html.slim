@@ -2,6 +2,6 @@
 	ul.nav.nav-tabs
 		== render partial: 'nested_tabs/header', collection: items, as: :item
 		li 
-			= content_tag :a, "+", class: 'btn', onclick: "$(this).closest('.media-window').media('request', \"#{add_path}\")"
+			= content_tag :a, "+", class: 'btn', onclick: "$(this).closest('.media-window').media('request', \"#{new_path}\")"
 	.tab-content
 		== render partial: 'nested_tabs/body', collection: items, as: :item

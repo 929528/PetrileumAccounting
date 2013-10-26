@@ -1,6 +1,8 @@
-= provide :title, "Документ: #{@Document.model_name.human count: '2'}"
+= provide :title, "Документ: #{@documents.model.model_name.human count: '2'}"
 = stored_control_panel
 .content
 	ul.media-list id="list" 
 		== render(@documents) || 'Элементов нет' 
 		= will_paginate @documents, class: "pagination pagination-centered"
+
+= @timestamp

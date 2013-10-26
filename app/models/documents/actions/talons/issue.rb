@@ -1,10 +1,10 @@
 class Documents::Actions::Talons::Issue < ActiveRecord::Base
-	belongs_to :talons_issue, inverse_of: :actions
+	belongs_to :talons_issue, inverse_of: :issues
 	belongs_to :talon, class_name: 'Catalogs::Talon', validate: true
 
 	validate :correct_talon_state
 
-	def talon_barcode= barcode
+	def talon_barcode= barcode 
 		self.talon = Catalogs::Talon.find_or_initialize_by barcode: barcode
 	end
 	def talon_barcode

@@ -3,12 +3,16 @@ class Documents::TalonsIssue < ActiveRecord::Base
 	belongs_to :contract, class_name: 'Catalogs::Contract'
 	belongs_to :user, class_name: 'Catalogs::User'
 
-	has_many :actions, class_name: 'Actions::Talons::Issue', inverse_of: :talons_issue
+	has_many :issues, class_name: 'Actions::Talons::Issue', inverse_of: :talons_issue
 
-	validate :correct_actions
+	validate :correct_issues
 	before_save :change_talons_state, if: :held?
 
-	accepts_nested_attributes_for :actions
+	accepts_nested_attributes_for :issues
+
+	def customer_name
+		self.contract.customer.name
+	end
 
 	def status= status
 		self.held = true if status == 'held'
@@ -17,16 +21,12 @@ class Documents::TalonsIssue < ActiveRecord::Base
 		self.held
 	end
 
-	def self.strong_params
-		return [:contract, :department, actions_attributes: [:id, :talon_barcode, :price, :expires]]
-	end
-
 	private
 
-	def correct_actions
-		self.actions.each do |action|
-			unless action.valid?
-				action.errors.full_messages.each do |msg|
+	def correct_issues
+		self.issues.each do |issue|
+			unless issue.valid?
+				issue.errors.full_messages.each do |msg|
 					errors[:base] << "#{msg}"
 				end
 			end
@@ -34,8 +34,8 @@ class Documents::TalonsIssue < ActiveRecord::Base
 	end
 
 	def change_talons_state
-		self.actions.each do |action|
-			action.send :change_talon_state
+		self.issues.each do |issue|
+			issue.send :change_talon_state
 		end
 	end
 end
