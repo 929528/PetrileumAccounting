@@ -1,7 +1,14 @@
 = content_tag 'li', class: 'media', data: {path: edit_documents_talons_issue_path(talons_issue)} do
 	.media-body
 		.media-heading 
-			= "№: #{talons_issue.id} Полное наименование: #{talons_issue}"
+			= "#{talons_issue.class.model_name.human count: '2'} №: #{talons_issue.id} "
 			.pull-right
-				|small.date = talons_issue.created_at.strftime "Создан: %d/%m/%Y"
+				.date = talons_issue.created_at.strftime "Создан: %d/%m/%Y в %H:%M:%S"
+		div
+			= "Организация: #{talons_issue.department.organization.name}"
+			.pull-right= "Автор #{talons_issue.user.name}"
+		div
+			= "Клиент: #{talons_issue.contract.customer.name}"
+			.pull-right СУММА
+		
 	.media-window.hide

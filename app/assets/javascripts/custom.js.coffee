@@ -12,38 +12,17 @@ $ ->
 		that = $(this)
 		that.find(".barcode input").on 'keypress', (event) ->
 			if event.which == 13
-				that.media 'request', $(this).data('path'), barcode: $(this).val()
+				barcode = $(this).val()
+				unless that.find(".action[data-barcode=#{barcode}]").length != 0
+					that.media 'request', $(this).data('path'), barcode: barcode
+				else
+					show_error that, "Талон существует в списе"
 				$(this).val ''
 
-		that.find('input[data-provide="typeahead"]').autocomplete 'init'
-
-
-		# 	that = $(this)
-		# 	target = $($(this).data 'target')
-		# 	update = $(this).data 'update'
-		# 	that.attr 'placeholder', 'Инициализация...'
-		# 	path = $(this).data 'source'
-		# 	$.getJSON path,
-		# 		name: 'sdf'
-		# 	.done (data) ->
-		# 		items = []
-		# 		for val in data
-		# 			items.push val
-		# 		that.attr 'placeholder', 'Введите имя клиента'
-		# 		that.typeahead
-		# 			source: items
-		# 			updater: (item) ->
-		# 				if target
-		# 					$.getJSON update,
-		# 							name: item 
-		# 						.done (data) ->
-		# 							target.empty()
-		# 							for val in data
-		# 								target.append $('<option>',
-		# 								selected: 'selected' if val.def
-		# 								value: val.id
-		# 								text: val.name)
-		# 				return item
-
-
-
+		that.find('input[data-provide="typeahead"]').each ->
+			$(this).autocomplete 'init'
+		
+show_error = (target, error) ->
+	div = target.find('.form-errors:first')
+	div.html('<div class="alert alert-error">'+error+'</div>').autohide 1000
+	return false

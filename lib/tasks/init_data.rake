@@ -9,7 +9,8 @@ namespace :db do
 		Catalogs::User.create!(name: "oleg", 
 			password: "9700477", 
 			password_confirmation: "9700477", 
-			email: "929528@gmail.com")
+			email: "929528@gmail.com",
+			department: Catalogs::Department.find_by(name: 'Трактора'))
 		Catalogs::Talons::State.create!(name: "new")
 		Catalogs::Talons::State.create!(name: "issued")
 		Catalogs::Talons::State.create!(name: "repaid")

@@ -1,18 +1,24 @@
-.header
-	| HEADER
-	.barcode
-		= simple_fields_for :talon do |f|
-			= f.input :barcode, input_html: {data: {path: "#{new_issue_documents_talons_issues_path}"}}
-.body
-	| BODY
-	= simple_form_for setup_form(@TalonsIssue), as: :document, remote: true do |d|
+= simple_form_for setup_form(@TalonsIssue), as: :document, html: {class: "form-horizontal"}, remote: true do |d|
+	.header
 		.client
 			.row-fluid
-					.span6
-						| CLIENT
-						= d.input :customer_name, input_html: {data: {provide: "typeahead", source: catalogs_customers_path, target: "#contract_for_#{@TalonsIssue.id}", update: get_contracts_catalogs_customers_path}}
-					.span6
-						| CONTRACT
-						= d.input :contract_id, as: :select, collection: @TalonsIssue.contract.customer.contracts, input_html: {id: "contract_for_#{@TalonsIssue.id}"}
-		.actions
-				== render @TalonsIssue.issues
+				.span6
+					= d.input :customer_name, label: "Клиент", placeholder: "Введите имя клиента", input_html: {data: {provide: "typeahead", source: catalogs_customers_path, target: "#contract_for_#{@TalonsIssue.id}", update: get_contracts_catalogs_customers_path}}
+				.span6
+					= d.input :contract_id, label: "Договор", as: :select, include_blank: false, collection: @TalonsIssue.contract.customer.contracts, input_html: {id: "contract_for_#{@TalonsIssue.id}"}
+		.organization
+			.row-fluid
+				.span6
+					= d.input :organization_name, label: "Организация", placeholder: "Введите имя организации", input_html: {data: {provide: "typeahead", source: catalogs_organizations_path, target: "#department_for_#{@TalonsIssue.id}", update: get_departments_catalogs_organizations_path}}
+				.span6
+					= d.input :department_id, label: "Подразделение", as: :select, include_blank: false, collection: @TalonsIssue.department.organization.departments, input_html: {id: "department_for_#{@TalonsIssue.id}"}
+	hr
+	.barcode
+		= simple_fields_for :talon do |f|
+			.input-prepend
+				.add-on
+					i.icon-barcode
+				= f.input_field :barcode, placeholder: "Введите штрихкод", data: {path: "#{new_issue_documents_talons_issues_path}"}
+
+	.actions.well.well-small
+			== render @TalonsIssue.issues

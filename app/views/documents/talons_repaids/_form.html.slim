@@ -1,7 +1,10 @@
 .header
 	.barcode
 		= simple_fields_for :talon do |f|
-			= f.input :barcode, input_html: {data: {path: "#{new_repaid_documents_talons_repaids_path}"}}
+			.input-prepend
+				.add-on
+					i.icon-barcode
+				= f.input_field :barcode, placeholder: "Введите штрихкод", data: {path: "#{new_repaid_documents_talons_repaids_path}"}
 .body
 	| BODY
 	= simple_form_for @TalonsRepaid, as: :document, remote: true do |d|

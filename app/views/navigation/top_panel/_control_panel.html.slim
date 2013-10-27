@@ -5,4 +5,4 @@
 			ul.nav.pull-right
 				- buttons.each do |btn|
 					li
-						= content_tag :button, btn[:title], class: 'btn', onclick: "$('#control-panel').find('.media-window').media('request', \"#{btn[:request_path]}\")"
+						= content_tag :button, content_tag(:i, " #{btn[:title]}", class: "icon-plus"), class: 'btn', onclick: "$('#control-panel').find('.media-window').media('request', \"#{btn[:request_path]}\")"

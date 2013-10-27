@@ -7,6 +7,7 @@ methods =
 		that = this
 		target = $(this.data 'target')
 		update = this.data 'update'
+		remember_placeholder = that.attr 'placeholder'
 		that.attr 'placeholder', 'Инициализация...'
 		path = this.data 'source'
 		$.getJSON path,
@@ -15,7 +16,7 @@ methods =
 			items = []
 			for val in data
 				items.push val
-			that.attr 'placeholder', 'Введите имя клиента'
+			that.attr 'placeholder', remember_placeholder
 			that.typeahead
 				source: items
 				updater: (item) ->

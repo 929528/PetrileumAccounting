@@ -1,4 +1,5 @@
 class Catalogs::OrganizationsController < CatalogsController
+	respond_to :html, :json
 	def index
 		super Catalogs::Organization
 	end
@@ -28,10 +29,15 @@ class Catalogs::OrganizationsController < CatalogsController
 			render partial: 'errors', locals: {item: @organization}
 		end
 	end
-		def new_department
+	def new_department
 		department = Catalogs::Department.new name: 'Новое подразделение'
 		@id = Time.now.to_i
 		render partial: 'add_tab', locals: {item: department}
+	end
+	def get_departments
+		organization = Catalogs::Organization.find_by_name params[:name]
+		departments = organization.departments.load
+		respond_with departments
 	end
 	private
 

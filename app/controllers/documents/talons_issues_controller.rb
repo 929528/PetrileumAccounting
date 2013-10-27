@@ -3,15 +3,13 @@ class Documents::TalonsIssuesController < DocumentsController
 		super Documents::TalonsIssue
 	end
 	def new
-		@TalonsIssue = Documents::TalonsIssue.new
+		@TalonsIssue = Documents::TalonsIssue.new department: current_user.department
 		render 'new'
-	end
-	def create
-		render nothing: true
 	end
 	def create
 		p "!!!!!!! #{talons_issue_params}"
 		@TalonsIssue = Documents::TalonsIssue.new talons_issue_params
+		@TalonsIssue.user = current_user
 		if @TalonsIssue.save
 			flash.now[:success] = "Документ: #{@TalonsIssue} создан!"
 			render 'create'
@@ -25,6 +23,7 @@ class Documents::TalonsIssuesController < DocumentsController
 	end
 	def update
 		@TalonsIssue = Documents::TalonsIssue.find params[:id]
+		@TalonsIssue.user = current_user
 		@TalonsIssue.status = params[:status]
 		if @TalonsIssue.update_attributes talons_issue_params
 			flash.now[:success] = "Документ: #{@TalonsIssue} обновлен!"
@@ -37,6 +36,6 @@ class Documents::TalonsIssuesController < DocumentsController
 	private
 
 	def talons_issue_params
-		params.require(:document).permit(:contract_id, :department, issues_attributes: [:id, :talon_barcode, :price, :expires])
+		params.require(:document).permit(:contract_id, :department_id, issues_attributes: [:id, :talon_barcode, :price, :expires])
 	end
 end

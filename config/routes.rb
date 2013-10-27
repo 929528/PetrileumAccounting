@@ -2,15 +2,18 @@ PetroleumAccounting::Application.routes.draw do
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
 	namespace :catalogs do
-		resources :users, :products
+		resources :users
 		resources :customers do 
 			get 'new_contract', on: :collection
 			get 'get_contracts', on: :collection
 		end
 		resources :organizations do 
 			get 'new_department', on: :collection
+			get 'get_departments', on: :collection 
 		end
+		resources :products
 	end
+
 	namespace :documents do 
 		resources :talons_issues do 
 			get 'new_issue', on: :collection, to: 'actions/talons/issues#new'

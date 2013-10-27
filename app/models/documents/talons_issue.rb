@@ -13,6 +13,9 @@ class Documents::TalonsIssue < ActiveRecord::Base
 	def customer_name
 		self.contract.customer.name
 	end
+	def organization_name
+		self.department.organization.name
+	end
 
 	def status= status
 		self.held = true if status == 'held'

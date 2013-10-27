@@ -1,4 +1,4 @@
-= simple_form_for @user, as: :user, html: {class: "form-horizontal"}, remote: true do |f|
+= simple_form_for setup_form(@user), as: :user, html: {class: "form-horizontal"}, remote: true do |f|
 	.tabbable
 		ul.nav.nav-tabs
 			li.active
@@ -14,4 +14,8 @@
 				= f.input :password, label: "Пароль"
 				= f.input :password_confirmation, label: "Подтверждение"
 			#tab2.tab-pane
-				| FSKFLJKlm,
+				.row-fluid
+					.span6
+						= f.input :organization_name, placeholder: "Введите имя организации", input_html: {data: {provide: "typeahead", source: catalogs_organizations_path, target: "#department_for_#{@user.id}", update: get_departments_catalogs_organizations_path}}
+					.span6
+						= f.input :department_id, as: :select, include_blank: false, collection: @user.department.organization.departments, input_html: {id: "department_for_#{@user.id}"}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024080523) do
+ActiveRecord::Schema.define(version: 20131027083521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,17 @@ ActiveRecord::Schema.define(version: 20131024080523) do
     t.datetime "updated_at"
   end
 
+  create_table "catalogs_product_prices", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "department_id"
+    t.decimal  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "catalogs_product_prices", ["department_id"], name: "index_catalogs_product_prices_on_department_id", using: :btree
+  add_index "catalogs_product_prices", ["product_id"], name: "index_catalogs_product_prices_on_product_id", using: :btree
+
   create_table "catalogs_products", force: true do |t|
     t.string   "name"
     t.string   "fullname"
@@ -104,7 +115,10 @@ ActiveRecord::Schema.define(version: 20131024080523) do
     t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "department_id"
   end
+
+  add_index "catalogs_users", ["department_id"], name: "index_catalogs_users_on_department_id", using: :btree
 
   create_table "documents_actions_talons_issues", force: true do |t|
     t.integer  "talons_issue_id"

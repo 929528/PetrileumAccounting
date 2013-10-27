@@ -5,6 +5,8 @@
 				== render "navigation/top_panel/catalogs"
 				== render "navigation/top_panel/documents"
 				li.divider-vertical
+				li = link_to(content_tag(:i,"",class: "icon-th-list") + " Цены", catalogs_customers_path)
+				li.divider-vertical
 			ul.nav.pull-right
 				li.divider-vertical
 				li = link_to(content_tag(:i,"",class: "icon-user") +  " " + current_user.name.to_s + " | Выход",signout_path , method: "delete")

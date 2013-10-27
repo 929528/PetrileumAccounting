@@ -8,19 +8,49 @@
 	background-repeat: repeat-x;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF0088CC', endColorstr='#FF0077B3', GradientType=0);
 }
+@mixin background {
+	background-color: #f9f9f9;
+	background-image: -moz-linear-gradient(top, white, #f2f2f2);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#f2f2f2));
+	background-image: -webkit-linear-gradient(top, white, #f2f2f2);
+	background-image: -o-linear-gradient(top, white, #f2f2f2);
+	background-image: linear-gradient(to bottom, white, #f2f2f2);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFF2F2F2', GradientType=0);
+	// border: 1px solid #d4d4d4;
+	// -webkit-border-radius: 4px;
+	// -moz-border-radius: 4px;
+	// border-radius: 4px;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+}
 @mixin raised {
 	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
 	box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
-	box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
-	&:before, &:after {
-		content:"";
-		position:absolute;
-		z-index:-2;
-	}
-}       
+	-webkit-box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+}   
+@mixin indented {
+	padding: 3px;
+	padding-left: 0px;
+	border-top-left-radius: 5px;
+	background-color: white;
+	-webkit-box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.2) inset;
+	-moz-box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.2) inset;
+	box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.2) inset;
+}
+.indented {
+	@include indented;
+}
+.raised {
+	@include raised;
+}    
+.well {
+	background-color: #FFFEF2;
+}
 html {
 	overflow: -moz-scrollbars-vertical; 
 	overflow-y: scroll;
@@ -50,23 +80,54 @@ body {
 		margin-top: 50px;
 		.media-list {
 			& > .media {
-				margin-bottom: 2px;
+				border-radius: 5px;
+				margin-bottom: 5px;
 				margin-top: 0px;
-				background-color: white;
+				@include background;
 				-webkit-transition:all 0.2s ease;
 				-moz-transition:all 0.3s ease;
 				&:hover { 
 					cursor: pointer;
 					@include background-hover;
-					& > .media-body {color: white}
+					@include raised;
+					& > .media-body {
+						color: white;
+					}
+				}
+				.media-window {
+					margin-bottom: -6px;
+					margin-right: -6px;
 				}
 			}
 			& > .media.active {
 				@extend .media:hover;
+				margin-bottom: 20px;
 			}
 			& > li{
 				padding: 0.5em;
 			}
+		}
+	}
+}
+.btn {
+	-webkit-transition:all 0.2s ease;
+	-moz-transition:all 0.3s ease;
+	&:hover {
+		-webkit-transition:all 0.2s ease;
+		-moz-transition:all 0.3s ease;
+		@include background-hover;
+		color: white;
+		text-shadow: none;
+	}
+}
+.media {
+	.media-footer {
+		hr {
+			margin-top: 0px;
+		}
+		.buttons {
+			margin-bottom: -20px;
+			margin-right: -5px;
 		}
 	}
 }

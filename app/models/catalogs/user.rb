@@ -1,4 +1,5 @@
 class Catalogs::User < ActiveRecord::Base
+	belongs_to :department
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
 	has_secure_password
@@ -14,8 +15,8 @@ class Catalogs::User < ActiveRecord::Base
 		user.send :create_remember_token
 	end
 
-	def self.strong_params
-		return [:name, :surname, :email, :password, :password_confirmation]
+	def organization_name
+		self.department.organization.name
 	end
 
 	private 

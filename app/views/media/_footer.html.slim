@@ -1,6 +1,10 @@
 .media-footer
 	hr
-	.buttons.text-right
-		button.btn data-state="close" Закрыть
-	    button.btn.btn-info data-state="save" Сохранить
-	    button.btn.btn-primary data-state="held" Провести
+	.buttons.indented.pull-right
+		= content_tag :button ,'', class: "btn", data: {state: 'close'} do 
+			= content_tag :i, " Закрыть", class: "icon-remove"
+		= content_tag :button ,'', class: "btn", data: {state: 'save'} do 
+			= content_tag :i, " Сохранить", class: "icon-save"
+		- unless catalog?
+			= content_tag :button ,'', class: "btn", data: {state: 'held'} do 
+				= content_tag :i, " Провести", class: "icon-magic"
