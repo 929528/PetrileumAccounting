@@ -9,11 +9,12 @@ class Documents::TalonsIssuesController < DocumentsController
 	def create
 		@TalonsIssue = Documents::TalonsIssue.new talons_issue_params
 		@TalonsIssue.user = current_user
+		@TalonsIssue.status = params[:status]
 		if @TalonsIssue.save
 			flash.now[:success] = "Документ: #{@TalonsIssue} создан!"
-			render 'create'
+			super @TalonsIssue
 		else 
-			render partial: 'errors', locals: {item: @TalonsIssue}
+			super @TalonsIssue, errors = true
 		end
 	end
 	def edit

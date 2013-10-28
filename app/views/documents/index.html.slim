@@ -3,3 +3,6 @@
 .content
 	ul.media-list id="list" 
 		== render(@documents) || 'Элементов нет' 
+	#list-load.text-center.hide
+		i.icon-refresh.icon-2x.icon-spin
+		| загрузка списка

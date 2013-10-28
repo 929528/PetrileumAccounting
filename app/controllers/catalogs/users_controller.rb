@@ -10,9 +10,9 @@ class Catalogs::UsersController < CatalogsController
 		@user = Catalogs::User.new user_params
 		if @user.save
 			flash.now[:success] = "Пользователь: #{@user.name} создан!"
-			render 'create'
+			super @user
 		else
-			render partial: 'errors', locals: {item: @user}
+			super @user, errors = true
 		end
 	end
 	def edit

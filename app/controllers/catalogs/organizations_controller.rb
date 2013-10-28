@@ -11,9 +11,9 @@ class Catalogs::OrganizationsController < CatalogsController
 		@organization = Catalogs::Organization.new organization_params
 		if @organization.save
 			flash.now[:success] = "Организация: #{@organization.name} создана!"
-			render 'create'
+			super @organization
 		else
-			render partial: 'errors', locals: {item: @organization}
+			super @organization, errors = true
 		end
 	end
 	def edit

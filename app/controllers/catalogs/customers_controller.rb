@@ -11,9 +11,9 @@ class Catalogs::CustomersController < CatalogsController
 		@customer = Catalogs::Customer.new customer_params
 		if @customer.save
 			flash.now[:success] = "Клиент: #{@customer.name} создан!"
-			render 'create'
+			super @customer
 		else
-			render partial: 'errors', locals: {item: @customer}
+			super @customer, errors = true
 		end
 	end
 	def edit

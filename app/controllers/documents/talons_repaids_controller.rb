@@ -10,11 +10,12 @@ class Documents::TalonsRepaidsController < DocumentsController
 		@TalonsRepaid = Documents::TalonsRepaid.new talons_repaid_params
 		@TalonsRepaid.department = current_user.department
 		@TalonsRepaid.user = current_user
+		@TalonsRepaid.status = params[:status]
 		if @TalonsRepaid.save
 			flash.now[:success] = "Документ: #{@TalonsRepaid} создан!"
-			render 'create'
+			super @TalonsRepaid 
 		else 
-			render partial: 'errors', locals: {item: @TalonsRepaid}
+			super @TalonsRepaid, errors= true
 		end
 	end
 	def edit

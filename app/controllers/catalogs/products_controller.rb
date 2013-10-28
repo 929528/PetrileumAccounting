@@ -10,9 +10,9 @@ class Catalogs::ProductsController < CatalogsController
 		@product = Catalogs::Product.new product_params
 		if @product.save
 			flash.now[:success] = "Продукт: #{@product.name} создан!"
-			render 'create'
+			super @product
 		else
-			render partial: 'errors', locals: {item: @product}
+			super @product, errors = true
 		end
 	end
 	def edit

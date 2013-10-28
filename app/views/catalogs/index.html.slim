@@ -3,4 +3,6 @@
 .content
 	ul.media-list id="list"
 		== render(@catalogs) || 'Элементов нет' 
-		/ = will_paginate @catalogs, class: "pagination pagination-centered"
+	#list-load.text-center.hide
+		i.icon-refresh.icon-2x.icon-spin
+		| загрузка списка

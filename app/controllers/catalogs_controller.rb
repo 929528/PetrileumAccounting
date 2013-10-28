@@ -7,6 +7,16 @@ class CatalogsController < ApplicationController
 		respond_with @catalogs.pluck :name
 	end
 
+	def create catalog, errors = false
+		unless errors
+			@catalog = catalog
+			render 'create'
+		else
+			render partial: 'errors', locals: {item: catalog}
+		end
+	end
+
+
 	private
 
 	def init

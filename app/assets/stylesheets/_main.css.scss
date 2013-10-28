@@ -25,6 +25,23 @@
 	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
 }
+@mixin background-new {
+	background-color: #00A200;
+	background-image: -moz-linear-gradient(top, #00A200, #119100);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#00A200), to(#119100));
+	background-image: -webkit-linear-gradient(top, #00A200, #119100);
+	background-image: -o-linear-gradient(top, #00A200, #119100);
+	background-image: linear-gradient(to bottom, #00A200, #119100);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFF2F2F2', GradientType=0);
+	// border: 1px solid #d4d4d4;
+	// -webkit-border-radius: 4px;
+	// -moz-border-radius: 4px;
+	// border-radius: 4px;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+}
 @mixin raised {
 	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
@@ -101,6 +118,11 @@ body {
 			}
 			& > .media.active {
 				@extend .media:hover;
+				margin-bottom: 20px;
+			}
+			& > .media.added {
+				@extend .media:hover;
+				@include background-new;
 				margin-bottom: 20px;
 			}
 			& > li{
