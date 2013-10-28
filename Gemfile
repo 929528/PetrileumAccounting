@@ -25,8 +25,6 @@ end
 
 gem 'russian', :git => 'git://github.com/yaroslav/russian.git'
 gem 'bootstrap-sass'
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 gem 'font-awesome-rails'
 gem 'cancan'

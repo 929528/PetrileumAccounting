@@ -1,8 +1,9 @@
 class CatalogsController < ApplicationController
-	respond_to :html, :json
+	respond_to :html, :json, :js
 	before_filter :init
 	def index catalog
-		@catalogs = catalog.paginate(page: params[:page], per_page: 10)
+		childrens_count = params[:childrens_count]
+		@catalogs = catalog.all.limit(20).offset childrens_count
 		respond_with @catalogs.pluck :name
 	end
 

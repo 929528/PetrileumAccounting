@@ -7,7 +7,6 @@ class Documents::TalonsIssuesController < DocumentsController
 		render 'new'
 	end
 	def create
-		p "!!!!!!! #{talons_issue_params}"
 		@TalonsIssue = Documents::TalonsIssue.new talons_issue_params
 		@TalonsIssue.user = current_user
 		if @TalonsIssue.save

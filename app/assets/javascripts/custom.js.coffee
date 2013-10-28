@@ -3,10 +3,7 @@ $ ->
 
 	$('#list > li.media').media('init')
 
-	$('#list .media-window').on 'show', ->
-		$(this).closest('.media').addClass('active')
-	$('#list .media-window').on 'hide', ->
-		$(this).closest('.media').removeClass('active')
+	$(window).scrollpagination 'init', '#list'
 
 	$('.media-window').on 'show', ->
 		that = $(this)

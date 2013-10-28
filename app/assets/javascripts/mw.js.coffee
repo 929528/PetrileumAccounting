@@ -8,6 +8,7 @@ methods =
 		unless that.data('show')
 			that.slideDown 400, ->
 				that.trigger 'show'
+				that.closest('.media').addClass('active')
 				that.data 'show', true
 				that.find('.media-footer > .buttons > .btn').on 'click', ->
 					state = $(this).data('state')
@@ -38,6 +39,7 @@ methods =
 		that = this
 		that.slideUp 400, ->
 			that.trigger 'hide'
+			that.closest('.media').removeClass('active')
 			that.data 'show', false
 			$(this).html ''
 

@@ -1,6 +1,6 @@
 = provide :title, "Справочник: #{@catalogs.model.model_name.human count: '2'}"
 = stored_control_panel
 .content
-	ul.media-list id="list" 
+	ul.media-list id="list"
 		== render(@catalogs) || 'Элементов нет' 
-		= will_paginate @catalogs, class: "pagination pagination-centered"
+		/ = will_paginate @catalogs, class: "pagination pagination-centered"
