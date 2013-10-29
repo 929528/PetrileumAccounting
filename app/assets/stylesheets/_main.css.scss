@@ -71,10 +71,10 @@
 html {
 	overflow: -moz-scrollbars-vertical; 
 	overflow-y: scroll;
+	& .busy { cursor: wait !important }
 }
-
 body {
-	background-color: rgba(184, 184, 184, 0.3) ;
+	background-color: rgba(184, 184, 184, 0.8) ;
 	background-image: linear-gradient(white 2px, transparent 2px),
 	linear-gradient(90deg, white 2px, transparent 2px),
 	linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),

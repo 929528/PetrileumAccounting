@@ -2,7 +2,8 @@
 	.navbar-inner
 		.container
 			a.brand = yield :title
-			ul.nav.pull-right
-				- buttons.each do |btn|
-					li
-						= content_tag :button, content_tag(:i, " #{btn[:title]}", class: "icon-plus"), class: 'btn', onclick: "$('#control-panel').find('.media-window').media('request', \"#{btn[:request_path]}\")"
+			- if defined? buttons
+				ul.nav.pull-right
+					- buttons.each do |btn|
+						li
+							= content_tag :button, content_tag(:i, " #{btn[:title]}", class: "icon-plus"), class: 'btn', data: {path: btn[:request_path], target: "#new-media"}

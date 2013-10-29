@@ -13,6 +13,7 @@ PetroleumAccounting::Application.routes.draw do
 		end
 		resources :products
 	end
+	resources :prices
 
 	namespace :documents do 
 		resources :talons_issues do 

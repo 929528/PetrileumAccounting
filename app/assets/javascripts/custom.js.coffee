@@ -1,7 +1,13 @@
 $ ->
+	$('html').on 'ajaxStart', ->
+		$(this).addClass 'busy'
+	$('html').on 'ajaxStop', ->
+		$(this).removeClass 'busy'
+
 	$('#flash_notice').autohide(1000)
 
 	$('#list > li.media').media('init')
+	$('#control-panel button').media 'init'
 
 	$(window).scrollpagination 'init', '#list'
 

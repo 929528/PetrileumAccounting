@@ -4,6 +4,7 @@ $.fn.scrollpagination = (method) ->
 methods =
 	load_content: ->
 		obj = this
+		obj.data 'ajaxready', false
 		childrens_count = obj.children('li').length
 		path = $(location).attr('href')
 		$('#list-load').fadeIn()
@@ -13,14 +14,16 @@ methods =
 				childrens_count: childrens_count
 			success: ->
 				$('#list-load').fadeOut()
+				obj.data 'ajaxready', true
 
 	init: (object) ->
 		target = this
 		object = $(object)
 		object.attr 'scrollPagination', 'enabled'
-		target.scroll (e) ->
-			if (object.attr('scrollPagination') == 'enabled') 
-				object.scrollpagination 'load_content' if target.scrollTop() == ($(document).height() - target.height())
+		object.data 'ajaxready', true
+		target.on 'scroll', (e) ->
+			if (object.attr('scrollPagination') == 'enabled') && (object.data 'ajaxready')
+				object.scrollpagination 'load_content' if target.scrollTop() + 10 >= ($(document).height() - target.height())
 			else
 				e.stopPropagation()
 	stop_pagination: ->

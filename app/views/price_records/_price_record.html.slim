@@ -1,0 +1,7 @@
+li.media
+	.media-body
+		.media-heading 
+			= "№: #{price_record.id}"
+			.pull-right
+				small.date = price_record.created_at.strftime "Создан: %d/%m/%Y в %H:%M:%S"
+	.media-window.hide

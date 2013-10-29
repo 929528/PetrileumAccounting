@@ -28,8 +28,8 @@ class Catalogs::ProductsController < CatalogsController
 			render partial: 'errors', locals: {item: @product}
 		end
 	end
-	def new_price
-		render nothing: true
+	def overvalues
+		@overvalues = Prices::Overvalue.all
 	end
 
 	private

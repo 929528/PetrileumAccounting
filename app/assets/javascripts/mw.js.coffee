@@ -5,14 +5,13 @@ $.fn.media = (method) ->
 methods = 
 	show: ->
 		that = this
-		unless that.data('show')
-			that.slideDown 400, ->
-				that.trigger 'show'
-				that.closest('.media').addClass('active')
-				that.data 'show', true
-				that.find('.media-footer > .buttons > .btn').on 'click', ->
-					state = $(this).data('state')
-					that.media('submit', state)
+		that.slideDown 300, ->
+			that.trigger 'show'
+			that.data 'show', true
+			that.closest('.media').addClass('active')
+			that.find('.media-footer > .buttons > .btn').on 'click', ->
+				state = $(this).data('state')
+				that.media('submit', state)
 
 	request: (path, data) ->
 		timestamp = $.now()
@@ -24,27 +23,28 @@ methods =
 				request: data if data
 
 	submit: (state) ->
-		that = this
 		if state == 'close'
-			that.media 'hide'
+			this.media 'hide'
 		else
 			inputs = []
 			inputs.push $("<input>").attr("type", "hidden").attr("name", "status").val(state)
-			inputs.push $("<input>").attr("type", "hidden").attr("name", "timestamp").val(that.attr 'timestamp')
-			form = that.find('.media-body form:first')
+			inputs.push $("<input>").attr("type", "hidden").attr("name", "timestamp").val(this.attr 'timestamp')
+			form = this.find('.media-body form:first')
 			form.append input for input in inputs
 			form.submit()
 
 	hide: ->
-		that = this
-		that.slideUp 400, ->
-			that.trigger 'hide'
-			that.closest('.media').removeClass('active')
-			that.data 'show', false
-			$(this).html ''
+		@this = this
+		this.slideUp 300, =>
+			@this.trigger 'hide'
+			@this.data 'show', false
+			@this.closest('.media').removeClass('active')
+			@this.html ''
 
 	init: ->
 		this.on 'click', ->
-			item = $(this).find('.media-window')
+			object = $(this).data 'target'
+			item = 
+				if object? then $(object) else $(this).find('.media-window')
 			unless item.data 'show'
 				item.media('request', $(this).data('path'))

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027083521) do
+ActiveRecord::Schema.define(version: 20131029133324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,28 @@ ActiveRecord::Schema.define(version: 20131027083521) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "catalogs_products_price_histories", force: true do |t|
+    t.integer  "price_id"
+    t.integer  "user_id"
+    t.decimal  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "catalogs_products_price_histories", ["price_id"], name: "index_catalogs_products_price_histories_on_price_id", using: :btree
+  add_index "catalogs_products_price_histories", ["user_id"], name: "index_catalogs_products_price_histories_on_user_id", using: :btree
+
+  create_table "catalogs_products_prices", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "department_id"
+    t.decimal  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "catalogs_products_prices", ["department_id"], name: "index_catalogs_products_prices_on_department_id", using: :btree
+  add_index "catalogs_products_prices", ["product_id"], name: "index_catalogs_products_prices_on_product_id", using: :btree
 
   create_table "catalogs_talons", force: true do |t|
     t.integer  "amount_id"
@@ -166,5 +188,27 @@ ActiveRecord::Schema.define(version: 20131027083521) do
 
   add_index "documents_talons_repaids", ["department_id"], name: "index_documents_talons_repaids_on_department_id", using: :btree
   add_index "documents_talons_repaids", ["user_id"], name: "index_documents_talons_repaids_on_user_id", using: :btree
+
+  create_table "price_records", force: true do |t|
+    t.integer  "price_id"
+    t.integer  "user_id"
+    t.decimal  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "price_records", ["price_id"], name: "index_price_records_on_price_id", using: :btree
+  add_index "price_records", ["user_id"], name: "index_price_records_on_user_id", using: :btree
+
+  create_table "prices", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "department_id"
+    t.decimal  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "prices", ["department_id"], name: "index_prices_on_department_id", using: :btree
+  add_index "prices", ["product_id"], name: "index_prices_on_product_id", using: :btree
 
 end
