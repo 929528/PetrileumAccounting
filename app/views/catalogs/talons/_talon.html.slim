@@ -1,0 +1,7 @@
+ul
+ li.alert.alert-success 
+ 	= "Штрихкод: #{talon.barcode}"
+ 	= talon.updated_at.strftime " | Выдан: %d/%m/%Y в %H:%M:%S"
+ 	= talon.expires.strftime " | Срок действия истекает: %d/%m/%Y в %H:%M:%S"
+ 	.progress.progress-striped.active
+ 		.bar style="width: #{progress_bar(talon)}%"

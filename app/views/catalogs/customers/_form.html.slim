@@ -5,9 +5,36 @@
 				a href="#customer_#{@customer.id}_tab_main" data-toggle="tab" Основная вкладка
 			li
 				a href="#customer_#{@customer.id}_tab_contracts" data-toggle="tab" Договора
+			li
+				a href="#customer_#{@customer.id}_tab_talons" data-toggle="tab" Талоны
+			li
+				a href="#customer_#{@customer.id}_tab_cards" data-toggle="tab" Карточки
+			li
+				a href="#customer_#{@customer.id}_tab_discounts" data-toggle="tab" Скидки
 		.tab-content
 			.tab-pane.active id="customer_#{@customer.id}_tab_main"
 				= f.input :name, label: "Наименование"
 				= f.input :fullname, label: "Полное наименование"
 			.tab-pane id="customer_#{@customer.id}_tab_contracts"
 				== render partial: 'nested_tabs/tabs', locals: {items: @customer.contracts, new_path:  new_contract_catalogs_customers_path}
+			.tab-pane id="customer_#{@customer.id}_tab_talons"
+				| ТАЛОНЫ
+				- @customer.contracts.each do |contract|
+					.well.well-small
+						.contract 
+							= "Имя: #{contract.name}. Срок действия талонов: #{contract.validity} дней."
+							== render(get_talons_on contract) || " Талонов нет"
+			.tab-pane id="customer_#{@customer.id}_tab_cards"
+				| Карточки
+			.tab-pane id="customer_#{@customer.id}_tab_discounts"
+				- Catalogs::Product.all.each do |product|
+					= f.simple_fields_for :discounts, setup_discount(@customer, product) do |d|
+						.discount
+							= product.fullname
+							.input-append
+								= d.input_field :id, as: :hidden
+								= d.input_field :value, placeholder: 'скидки нет', class: "input-small"
+								= d.input_field :customer_id, as: :hidden
+								= d.input_field :product_id, as: :hidden
+								span.add-on грн/л
+								= d.input_field :_destroy, as: :boolean, inline_label: 'удалить скидку'

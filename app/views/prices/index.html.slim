@@ -2,14 +2,14 @@
 = stored_control_panel
 .content
 	.row-fluid
-		.span6.well
+		.span6
 			#acc_organizations.accordion
 				- Catalogs::Organization.all.each do |organization|
 					.accordion-group
 						.accordion-heading
 							a.accordion-toggle data-toggle="collapse" data-parent="#acc_organizations" href="#collapse_organization_#{organization.id}"
 								= organization.name
-						.accordion-body.collapse id="collapse_organization_#{organization.id}"
+						.accordion-body.collapse id="collapse_organization_#{organization.id}" class="#{(current_user.department.organization.id == organization.id) ? 'in' : ''}"
 							.accordion-inner
 								#acc_departments.accordion
 									- organization.departments.each do |department|
@@ -17,10 +17,9 @@
 											.accordion-heading
 												a.accordion-toggle data-toggle="collapse" data-parent="#acc_departments" href="#collapse_department_#{department.id}"
 													= department.name
-											.accordion-body.collapse id="collapse_department_#{department.id}"
+											.accordion-body.collapse id="collapse_department_#{department.id}" class="#{(current_user.department.id == department.id) ? 'in' : ''}"
 												.accordion-inner
 													- Catalogs::Product.all.each do |product|
-														hr
 														= simple_form_for setup_price(department, product), remote: true do |f|
 															.media
 																.pull-right
@@ -31,9 +30,8 @@
 																		span.add-on грн/л
 																		button.btn type="button" onclick="$(this).closest(form).submit()" изменить
 																= product.fullname
-
-
 		.span6
+			.text-center.text-info.well.well-small История изменения цен
 			ul.media-list id="list"
 				== render(@records) || 'Элементов нет' 
 			#list-load.text-center.hide

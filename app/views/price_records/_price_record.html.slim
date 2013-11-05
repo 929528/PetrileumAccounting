@@ -1,7 +1,11 @@
-li.media
+= content_tag 'li', class: 'media', data: {path: price_path(price_record)} do
 	.media-body
 		.media-heading 
-			= "№: #{price_record.id}"
+			= "№: #{price_record.id} "
+			= "#{price_record.price.department.organization.name}::#{price_record.price.department.name}"
 			.pull-right
 				small.date = price_record.created_at.strftime "Создан: %d/%m/%Y в %H:%M:%S"
+		= price_record.price.product.fullname
+		.pull-right
+			= "#{price_record.value} грн/л"
 	.media-window.hide

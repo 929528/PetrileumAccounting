@@ -4,7 +4,12 @@
 		.state = issue.talon.state.name
 		.amount = issue.talon.amount.value
 		.product = issue.talon.product.name
+		.price = "цена: #{issue.price || "не задана"}"
+		.sum = "сумма: #{issue.price * issue.talon.amount.value}"
 		.document = issue.talons_issue
+		.expires = "Действителен до #{issue.expires}"
 	= simple_fields_for "document[issues_attributes][#{issue.talon.barcode}]", issue do |f|
 		= f.input_field :id, as: :hidden
-		= f.input_field :talon_barcode, as: :hidden
+		= f.input_field :barcode, as: :hidden
+		= f.input_field :price, as: :hidden
+		= f.input_field :expires, as: :hidden

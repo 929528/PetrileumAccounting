@@ -3,9 +3,12 @@ class Documents::TalonsIssue < ActiveRecord::Base
 	belongs_to :contract, class_name: 'Catalogs::Contract'
 	belongs_to :user, class_name: 'Catalogs::User'
 
-	has_many :issues, class_name: 'Actions::Talons::Issue', inverse_of: :talons_issue
+	has_many :issues, class_name: 'Actions::Talons::Issue', validate: false, inverse_of: :talons_issue
 
-	validate :correct_issues
+	validates_presence_of :department, :contract, :user, :issues
+	validate :correct_state
+	validate :check_correct_actions, if: 'self.errors.empty?'
+	before_save :calculate_sum
 	before_save :change_talons_state, if: :held?
 
 	accepts_nested_attributes_for :issues
@@ -18,6 +21,7 @@ class Documents::TalonsIssue < ActiveRecord::Base
 	end
 
 	def status= status
+		@last_state = self.held
 		self.held = true if status == 'held'
 	end
 	def held?
@@ -26,8 +30,13 @@ class Documents::TalonsIssue < ActiveRecord::Base
 
 	private
 
-	def correct_issues
+	def change_talons_state
 		self.issues.each do |issue|
+			issue.send :change_talon_state
+		end
+	end
+	def check_correct_actions
+		self.issues.each do |issue| 
 			unless issue.valid?
 				issue.errors.full_messages.each do |msg|
 					errors[:base] << "#{msg}"
@@ -35,10 +44,11 @@ class Documents::TalonsIssue < ActiveRecord::Base
 			end
 		end
 	end
+	def correct_state
+		errors[:base] << 'Документ проведен' if @last_state
+	end
 
-	def change_talons_state
-		self.issues.each do |issue|
-			issue.send :change_talon_state
-		end
+	def calculate_sum
+		self.sum = self.issues.inject(0){|sum,el| sum + el.price * el.talon.amount.value}
 	end
 end

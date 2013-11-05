@@ -1,0 +1,7 @@
+<%- if @records.count == 0 %>
+$('#list').scrollpagination('stop_pagination');
+<%- else %>
+<%- @records.each do |record| %>
+$('#list').append($("<%=j render record %>").media('init'));
+<%- end %>
+<%- end %>

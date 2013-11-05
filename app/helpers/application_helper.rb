@@ -7,4 +7,7 @@ module ApplicationHelper
 	def catalog?
 		params[:controller].split('/').first == 'catalogs'
 	end
+	def document?
+		params[:controller].split('/').first == 'documents'
+	end
 end

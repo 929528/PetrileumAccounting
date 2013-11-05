@@ -20,5 +20,10 @@
 					i.icon-barcode
 				= f.input_field :barcode, placeholder: "Введите штрихкод", data: {path: "#{new_issue_documents_talons_issues_path}"}
 
-	.actions.well.well-small
-			== render @TalonsIssue.issues
+
+	.row-fluid.well
+		.span3.well
+			| ИТОГИ
+		.span9
+			.actions
+				== render @TalonsIssue.issues

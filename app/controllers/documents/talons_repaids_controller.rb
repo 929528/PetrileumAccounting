@@ -37,6 +37,6 @@ class Documents::TalonsRepaidsController < DocumentsController
 	private
 
 	def talons_repaid_params
-		params.require(:document).permit :department, repaids_attributes: [:id, :talon_barcode, :price]
+		params.require(:document).permit :department, repaids_attributes: [:id, :barcode, :price]
 	end
 end

@@ -1,11 +1,12 @@
 class Documents::Actions::Talons::RepaidsController < Documents::Actions::ActionsController
 	def new
-		talon = Catalogs::Talon.find_or_initialize_by barcode: params[:request][:barcode]
-		if talon.valid?
-			@repaid = Documents::Actions::Talons::Repaid.new talon_barcode: talon.barcode
-			super @repaid
-		else
-			render partial: 'errors', locals: {item: talon}
-		end
+		@repaid = Documents::Actions::Talons::Repaid.new repaid_params
+		@repaid.talon.valid? ? (super @repaid) : (render partial: 'errors', locals: {item: @repaid.talon})
+	end
+
+	private
+
+	def repaid_params 
+		params.require(:request).require(:data).permit :barcode
 	end
 end

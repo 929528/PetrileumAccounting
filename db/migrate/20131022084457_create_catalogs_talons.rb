@@ -5,7 +5,7 @@ class CreateCatalogsTalons < ActiveRecord::Migration
       t.references :state, index: true
       t.references :product, index: true
       t.string :barcode
-      t.references :customer, index: true
+      t.references :contract, index: true
 
       t.timestamps
     end

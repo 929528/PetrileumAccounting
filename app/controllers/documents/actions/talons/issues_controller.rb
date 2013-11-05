@@ -1,11 +1,13 @@
 class Documents::Actions::Talons::IssuesController < Documents::Actions::ActionsController
 	def new
-		talon = Catalogs::Talon.find_or_initialize_by barcode: params[:request][:barcode]
-		if talon.valid?
-			@issue = Documents::Actions::Talons::Issue.new talon_barcode: talon.barcode
-			super @issue
-		else
-			render partial: 'errors', locals: {item: talon}
-		end
+		@issue = Documents::Actions::Talons::Issue.new(issue_params)
+		@issue.talon.valid? ? (super @issue.tap {|action| action.send :init_action}) :
+		(render partial: 'errors', locals: {item: @issue.talon})
+	end
+
+	private
+
+	def issue_params
+		params.require(:request).require(:data).permit :department, :barcode, :contract
 	end
 end

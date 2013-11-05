@@ -36,6 +36,6 @@ class Documents::TalonsIssuesController < DocumentsController
 	private
 
 	def talons_issue_params
-		params.require(:document).permit(:contract_id, :department_id, issues_attributes: [:id, :talon_barcode, :price, :expires])
+		params.require(:document).permit(:contract_id, :department_id, issues_attributes: [:id, :barcode, :price, :expires])
 	end
 end

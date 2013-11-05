@@ -2,10 +2,11 @@ class Catalogs::Talon < ActiveRecord::Base
 	belongs_to :amount, class_name: 'Talons::Amount'
 	belongs_to :state, class_name: 'Talons::State'
 	belongs_to :product
-	belongs_to :customer
+	belongs_to :contract
 
 	VALID_BARCODE_REGEX = /\A[2,5][1-5]\d{8}\z/
 	validates :barcode, presence: true, uniqueness: true, format: { with: VALID_BARCODE_REGEX }
+	validates_presence_of :amount, :state, :product 
 
 	def initialize attributes = {}
 		super

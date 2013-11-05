@@ -1,0 +1,7 @@
+div = "Организация: #{@price_record.price.department.organization.name}"
+div = "Подразделение: #{@price_record.price.department.name}"
+div = "Продукт: #{@price_record.price.product.fullname}"
+- if previous_record = get_previous_record(@price_record)
+	= "Предыдущая цена: #{previous_record.value}"
+div = "Новая цена: #{@price_record.value}"
+div = "Автор: #{@price_record.user.name}"

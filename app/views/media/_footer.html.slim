@@ -1,10 +1,11 @@
 .media-footer
 	hr
-	.buttons.indented.pull-right
+	.buttons.pull-right
 		= content_tag :button ,'', class: "btn", data: {state: 'close'} do 
 			= content_tag :i, " Закрыть", class: "icon-remove"
-		= content_tag :button ,'', class: "btn", data: {state: 'save'} do 
-			= content_tag :i, " Сохранить", class: "icon-save"
-		- unless catalog?
-			= content_tag :button ,'', class: "btn", data: {state: 'held'} do 
-				= content_tag :i, " Провести", class: "icon-magic"
+		- if document? || catalog?
+			= content_tag :button ,'', class: "btn", data: {state: 'save'} do 
+				= content_tag :i, " Сохранить", class: "icon-save"
+			- unless catalog?
+				= content_tag :button ,'', class: "btn", data: {state: 'held'} do 
+					= content_tag :i, " Провести", class: "icon-magic"

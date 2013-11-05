@@ -5,6 +5,8 @@
 		.amount = repaid.talon.amount.value
 		.product = repaid.talon.product.name
 		.document = repaid.talons_repaid
+		.expires = "Действителен до: #{repaid.talon.expires}"
+		.customer = repaid.talon.contract.customer.name
 	= simple_fields_for "document[repaids_attributes][#{repaid.talon.barcode}]", repaid do |f|
 		= f.input_field :id, as: :hidden
-		= f.input_field :talon_barcode, as: :hidden
+		= f.input_field :barcode, as: :hidden

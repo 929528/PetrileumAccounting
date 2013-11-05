@@ -17,7 +17,11 @@ $ ->
 			if event.which == 13
 				barcode = $(this).val()
 				unless that.find(".action[data-barcode=#{barcode}]").length != 0
-					that.media 'request', $(this).data('path'), barcode: barcode
+					data = {}
+					data['department'] = that.find('form:first').find('select[name="document[department_id]"] option:selected').val()
+					data['contract'] = that.find('form:first').find('select[name="document[contract_id]"] option:selected').val()
+					data['barcode'] = barcode
+					that.media 'request', $(this).data('path'), data: data
 				else
 					show_error that, "Талон существует в списе"
 				$(this).val ''

@@ -11,19 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131029133324) do
+ActiveRecord::Schema.define(version: 20131105125659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "catalogs_contract_types", force: true do |t|
     t.string   "name"
-    t.integer  "contract_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "freebie"
   end
-
-  add_index "catalogs_contract_types", ["contract_id"], name: "index_catalogs_contract_types_on_contract_id", using: :btree
 
   create_table "catalogs_contracts", force: true do |t|
     t.string   "name"
@@ -31,8 +29,12 @@ ActiveRecord::Schema.define(version: 20131029133324) do
     t.boolean  "def"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "contract_type_id"
+    t.boolean  "freebie"
+    t.integer  "validity"
   end
 
+  add_index "catalogs_contracts", ["contract_type_id"], name: "index_catalogs_contracts_on_contract_type_id", using: :btree
   add_index "catalogs_contracts", ["customer_id"], name: "index_catalogs_contracts_on_customer_id", using: :btree
 
   create_table "catalogs_customers", force: true do |t|
@@ -60,17 +62,6 @@ ActiveRecord::Schema.define(version: 20131029133324) do
     t.datetime "updated_at"
   end
 
-  create_table "catalogs_product_prices", force: true do |t|
-    t.integer  "product_id"
-    t.integer  "department_id"
-    t.decimal  "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "catalogs_product_prices", ["department_id"], name: "index_catalogs_product_prices_on_department_id", using: :btree
-  add_index "catalogs_product_prices", ["product_id"], name: "index_catalogs_product_prices_on_product_id", using: :btree
-
   create_table "catalogs_products", force: true do |t|
     t.string   "name"
     t.string   "fullname"
@@ -79,40 +70,19 @@ ActiveRecord::Schema.define(version: 20131029133324) do
     t.datetime "updated_at"
   end
 
-  create_table "catalogs_products_price_histories", force: true do |t|
-    t.integer  "price_id"
-    t.integer  "user_id"
-    t.decimal  "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "catalogs_products_price_histories", ["price_id"], name: "index_catalogs_products_price_histories_on_price_id", using: :btree
-  add_index "catalogs_products_price_histories", ["user_id"], name: "index_catalogs_products_price_histories_on_user_id", using: :btree
-
-  create_table "catalogs_products_prices", force: true do |t|
-    t.integer  "product_id"
-    t.integer  "department_id"
-    t.decimal  "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "catalogs_products_prices", ["department_id"], name: "index_catalogs_products_prices_on_department_id", using: :btree
-  add_index "catalogs_products_prices", ["product_id"], name: "index_catalogs_products_prices_on_product_id", using: :btree
-
   create_table "catalogs_talons", force: true do |t|
     t.integer  "amount_id"
     t.integer  "state_id"
     t.integer  "product_id"
     t.string   "barcode"
-    t.integer  "customer_id"
+    t.integer  "contract_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "expires"
   end
 
   add_index "catalogs_talons", ["amount_id"], name: "index_catalogs_talons_on_amount_id", using: :btree
-  add_index "catalogs_talons", ["customer_id"], name: "index_catalogs_talons_on_customer_id", using: :btree
+  add_index "catalogs_talons", ["contract_id"], name: "index_catalogs_talons_on_contract_id", using: :btree
   add_index "catalogs_talons", ["product_id"], name: "index_catalogs_talons_on_product_id", using: :btree
   add_index "catalogs_talons", ["state_id"], name: "index_catalogs_talons_on_state_id", using: :btree
 
@@ -141,6 +111,17 @@ ActiveRecord::Schema.define(version: 20131029133324) do
   end
 
   add_index "catalogs_users", ["department_id"], name: "index_catalogs_users_on_department_id", using: :btree
+
+  create_table "discounts", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "customer_id"
+    t.decimal  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "discounts", ["customer_id"], name: "index_discounts_on_customer_id", using: :btree
+  add_index "discounts", ["product_id"], name: "index_discounts_on_product_id", using: :btree
 
   create_table "documents_actions_talons_issues", force: true do |t|
     t.integer  "talons_issue_id"
@@ -172,6 +153,7 @@ ActiveRecord::Schema.define(version: 20131029133324) do
     t.boolean  "held"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "sum"
   end
 
   add_index "documents_talons_issues", ["contract_id"], name: "index_documents_talons_issues_on_contract_id", using: :btree

@@ -19,11 +19,13 @@
 
 #flash_notice, .form-errors { &:hover { cursor: wait } }
 
-.action {
-	@extend .alert-success;
-	padding: 5px;
+.actions {
+	padding-right: 20px;
+	.action {
+		@extend .alert-success;
+		padding: 5px;
+	}
 }
-
 #new-media {
 	@include raised; 
 	border-left:solid 1px #0081c2;
@@ -31,11 +33,14 @@
 	border-bottom:solid 1px #0081c2;
 }
 .media-window {
+	max-height: 500px;
+	overflow: auto;
 	.tabbable {
 		li.active a {
 			@include background-hover;
 			color: white;
 		}
+
 	}
 	.media {
 		padding: 20px 5px 20px 5px;
@@ -44,8 +49,6 @@
 			.body {
 				padding-top: 5px;
 				padding-bottom: 5px;
-				max-height: 300px;
-				overflow-y: auto;
 			}
 		}
 	}

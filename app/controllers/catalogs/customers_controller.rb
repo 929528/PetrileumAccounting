@@ -42,6 +42,23 @@ class Catalogs::CustomersController < CatalogsController
 	private
 
 	def customer_params
-		params.require(:customer).permit [:name, :fullname, contracts_attributes: [:id, :name, :def]]
+		params.require(:customer).permit [
+			:name, 
+			:fullname, 
+			contracts_attributes: [
+				:id, 
+				:contract_type_id, 
+				:validity, 
+				:name, 
+				:def
+				],
+				discounts_attributes: [
+					:id,
+					:value,
+					:customer_id,
+					:product_id,
+					:_destroy
+				]
+			]
+		end
 	end
-end
