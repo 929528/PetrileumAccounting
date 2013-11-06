@@ -1,1 +1,1 @@
-$(".media-window[timestamp=<%= @timestamp%>] .form-errors:first").html("<%=j render "media/error_messages", name: item %>").autohide(1000);
+$(".media-window[timestamp=<%= @timestamp%>] .form-errors:first").html("<%=j render "media/error_messages", name: item %>").slideDown(100);
