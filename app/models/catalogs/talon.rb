@@ -5,8 +5,9 @@ class Catalogs::Talon < ActiveRecord::Base
 	belongs_to :contract
 
 	VALID_BARCODE_REGEX = /\A[2,5][1-5]\d{8}\z/
-	validates :barcode, presence: true, uniqueness: true, format: { with: VALID_BARCODE_REGEX }
-	validates_presence_of :amount, :state, :product 
+	validates :barcode, presence: true, uniqueness: true
+	validates :barcode, format: { with: VALID_BARCODE_REGEX }, allow_blank: true
+	validates_presence_of :amount, :state, :product, if: 'self.errors.empty?'
 
 	def initialize attributes = {}
 		super

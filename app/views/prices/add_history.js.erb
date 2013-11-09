@@ -1,2 +1,2 @@
 $('#list').prepend($("<%=j render @price.records.last %>").media('init').addClass('added'));
-$("#flash_notice").html("<%=j render '/flash_notice' %>").autohide(2000);
+$("#flash_notice").append("<%=j render '/flash_notice' %>").flash('init');

@@ -1,7 +1,5 @@
-<%- if @records.count == 0 %>
-$('#list').scrollpagination('stop_pagination');
-<%- else %>
+<%- unless @records.empty? %>
 <%- @records.each do |record| %>
-$('#list').append($("<%=j render record %>").media('init'));
+$('#preload').before($("<%=j render record %>").media('init').hide())
 <%- end %>
 <%- end %>

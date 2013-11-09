@@ -26,6 +26,5 @@ module PetroleumAccounting
         # config.autoload_paths += %W(#{config.root}/lib)
 
         config.generators.assets = false
-
     end
 end

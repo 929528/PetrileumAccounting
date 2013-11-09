@@ -1,7 +1,5 @@
-<%- if @catalogs.count == 0 %>
-$('#list').scrollpagination('stop_pagination');
-<%- else %>
+<%- unless @catalogs.empty? %>
 <%- @catalogs.each do |catalog| %>
-$('#list').append($("<%=j render catalog %>").media('init'));
+$('#preload').before($("<%=j render catalog %>").media('init').hide())
 <%- end %>
 <%- end %>

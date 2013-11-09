@@ -2,8 +2,8 @@
 	.navbar-inner
 		.container
 			a.brand = yield :title
-			- if defined? buttons
-				ul.nav.pull-right
+			ul.nav.pull-right
+				li.divider-vertical
+				- if defined? buttons
 					- buttons.each do |btn|
-						li
-							= content_tag :button, content_tag(:i, " #{btn[:title]}", class: "icon-plus"), class: 'btn', data: {path: btn[:request_path], target: "#new-media"}
+						= content_tag :a, content_tag(:i, " #{btn[:title]}", class: "icon-plus"), class: 'btn', data: {path: btn[:request_path], target: "#new-media"}

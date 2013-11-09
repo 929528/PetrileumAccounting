@@ -5,7 +5,8 @@ class Documents::TalonsIssue < ActiveRecord::Base
 
 	has_many :issues, class_name: 'Actions::Talons::Issue', validate: false, inverse_of: :talons_issue
 
-	validates_presence_of :department, :contract, :user, :issues
+	validates_presence_of :department, :contract, :user
+	validates :issues, presence: { message: "^Документ не содержит операций" }
 	validate :correct_state
 	validate :check_correct_actions, if: 'self.errors.empty?'
 	before_save :calculate_sum

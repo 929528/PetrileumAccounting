@@ -1,6 +1,6 @@
-#flash_notice
-	== render '/flash_notice'
 #control-panel
 	= yield :control_panel
-	.container
-		#new-media.media-window.hide
+#right-panel
+	== render 'navigation/right_panel/panel'
+.container
+	#new-media.media-window.hide

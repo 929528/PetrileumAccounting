@@ -12,18 +12,16 @@
 					= d.input :organization_name, label: "Организация", placeholder: "Введите имя организации", input_html: {data: {provide: "typeahead", source: catalogs_organizations_path, target: "#department_for_#{@TalonsIssue.id}", update: get_departments_catalogs_organizations_path}}
 				.span6
 					= d.input :department_id, label: "Подразделение", as: :select, include_blank: false, collection: @TalonsIssue.department.organization.departments, input_html: {id: "department_for_#{@TalonsIssue.id}"}
-	hr
-	.barcode
-		= simple_fields_for :talon do |f|
-			.input-prepend
-				.add-on
-					i.icon-barcode
-				= f.input_field :barcode, placeholder: "Введите штрихкод", data: {path: "#{new_issue_documents_talons_issues_path}"}
-
-
-	.row-fluid.well
-		.span3.well
-			| ИТОГИ
-		.span9
-			.actions
-				== render @TalonsIssue.issues
+	.body
+		.row-fluid
+			.span3
+				.barcode
+					= simple_fields_for :talon do |f|
+						.input-prepend
+							.add-on
+								i.icon-barcode
+							= f.input_field :barcode, placeholder: "Введите штрихкод", data: {path: "#{new_issue_documents_talons_issues_path}"}, class: "input-block-level"
+				.results.well
+			.span9
+				.actions
+					== render @TalonsIssue.issues

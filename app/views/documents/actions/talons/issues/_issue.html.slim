@@ -1,13 +1,13 @@
-.action data-barcode="#{issue.talon.barcode}"
+= content_tag :div, class: "action", data: {barcode: issue.talon.barcode, product: Russian::translit(issue.talon.product.name), amount: issue.talon.amount.value, price: issue.price}
 	.talon
-		.barcode = issue.talon.barcode
-		.state = issue.talon.state.name
-		.amount = issue.talon.amount.value
-		.product = issue.talon.product.name
-		.price = "цена: #{issue.price || "не задана"}"
+		.header
+			.amount = issue.talon.amount.value
+			.product = issue.talon.product.name
+	.attr
+		- if issue.new_record?
+			a.close x
 		.sum = "сумма: #{issue.price * issue.talon.amount.value}"
-		.document = issue.talons_issue
-		.expires = "Действителен до #{issue.expires}"
+		.expires = issue.expires.strftime "действителен до: %d/%m/%y"
 	= simple_fields_for "document[issues_attributes][#{issue.talon.barcode}]", issue do |f|
 		= f.input_field :id, as: :hidden
 		= f.input_field :barcode, as: :hidden

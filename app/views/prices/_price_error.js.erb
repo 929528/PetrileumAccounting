@@ -1,1 +1,1 @@
-$("#flash_notice").html("<%=j render "media/error_messages", name: item %>").autohide(2000);
+$("#flash_notice").append("<%=j render "media/error_messages", name: item %>").flash('init');

@@ -1,7 +1,11 @@
 class PricesController < ApplicationController
 	def index
-		childrens_count = params[:childrens_count]
-		@records = PriceRecord.all.order('id DESC').limit(10).offset childrens_count
+		elements_count = params[:elements_count]
+		@records = PriceRecord.all.order('id DESC').offset(elements_count).limit(8)
+		respond_to do |format|
+			format.html
+			format.js {render 'index', status: @records.empty? ? 400 : 200 }
+		end
 	end
 	def create
 		@price = Price.new(price_params).tap {|p| p.user = current_user}

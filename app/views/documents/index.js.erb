@@ -1,7 +1,6 @@
-<%- if @documents.count == 0 %>
-$('#list').scrollpagination('stop_pagination');
-<%- else %>
+<%- unless @documents.empty? %>
 <%- @documents.each do |document| %>
-$('#list').append($("<%=j render document %>").media('init'));
+$('#preload').before($("<%=j render document %>").media('init').hide())
 <%- end %>
 <%- end %>
+

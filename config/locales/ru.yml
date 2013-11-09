@@ -4,6 +4,9 @@ ru:
       catalogs/customer:
         one: Клиент
         other: Клиенты
+
+      catalogs/contract: "Договор"
+
       catalogs/organization:
         one: Организация
         other: Организации
@@ -16,3 +19,20 @@ ru:
       documents/talons_issues:
         one: Реализация талонов
         other: Реализации талонов
+    attributes:
+      documents/talons_issue: 
+        contract: "Договор"
+      catalogs/talon:
+        barcode: "Штрихкод"
+      catalogs/customer:
+        name: "Наименование"
+      catalogs/organization:
+        name: "Наименование"
+      catalogs/product:
+        name: "Наименование"
+      catalogs/user:
+        password: "Пароль"
+        name: "Наименование"
+        email: "Электронный адресс"
+
+

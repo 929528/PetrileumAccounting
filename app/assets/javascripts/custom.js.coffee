@@ -1,15 +1,14 @@
 $ ->
-	$('html').on 'ajaxStart', ->
-		$(this).addClass 'busy'
-	$('html').on 'ajaxStop', ->
-		$(this).removeClass 'busy'
+	$('.collapse').on 'show', ->
+		$(this).prev().addClass 'active'
+	$('.collapse').on 'hide', ->
+		$(this).prev().removeClass 'active'	
 
-	$('#flash_notice').autohide(1000)
 
-	$('#list > li.media').media('init')
-	$('#control-panel button').media 'init'
+	$('#flash_notice').flash('showAndHide', 2000)
 
-	$(window).scrollpagination 'init', '#list'
+	$('#list > li.media:not(.active)').media('init')
+	$('#control-panel a.btn').media 'init'
 
 	$('.media-window').on 'show', ->
 		that = $(this)
@@ -23,13 +22,21 @@ $ ->
 					data['barcode'] = barcode
 					that.media 'request', $(this).data('path'), data: data
 				else
-					show_error that, "Талон существует в списе"
+					show_notice 'error', 'Талон существует в списе'
 				$(this).val ''
 
 		that.find('input[data-provide="typeahead"]').each ->
 			$(this).autocomplete 'init'
+
+		$('.actions').on 'addAction', ->
+			show_notice 'success', 'Талон добавлен в список'
+		$('.actions').on 'removeAction', ->
+			show_notice 'success', 'Талон удален из списка'
+		that.find('.actions').results 'init'
+			
+	$('#preload').preload 'init'
 		
-show_error = (target, error) ->
-	div = target.find('.form-errors:first')
-	div.html('<div class="alert alert-error">'+error+'</div>').autohide 1000
-	return false
+show_notice = (type, message) ->
+	$('#flash_notice').append('<div class="alert alert-'+type+'">'+message+'</div>').flash 'init'
+
+window.show_notice = show_notice

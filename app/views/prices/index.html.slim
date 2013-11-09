@@ -3,21 +3,22 @@
 .content
 	.row-fluid
 		.span6
+			.title.text-center.text-info.well.well-small Организации
 			#acc_organizations.accordion
-				- Catalogs::Organization.all.each do |organization|
-					.accordion-group
+				.accordion-group
+					- Catalogs::Organization.all.each do |organization|
 						.accordion-heading
 							a.accordion-toggle data-toggle="collapse" data-parent="#acc_organizations" href="#collapse_organization_#{organization.id}"
 								= organization.name
-						.accordion-body.collapse id="collapse_organization_#{organization.id}" class="#{(current_user.department.organization.id == organization.id) ? 'in' : ''}"
+						.accordion-body.collapse id="collapse_organization_#{organization.id}" 
 							.accordion-inner
 								#acc_departments.accordion
-									- organization.departments.each do |department|
-										.accordion-group
+									.accordion-group
+										- organization.departments.each do |department|
 											.accordion-heading
 												a.accordion-toggle data-toggle="collapse" data-parent="#acc_departments" href="#collapse_department_#{department.id}"
 													= department.name
-											.accordion-body.collapse id="collapse_department_#{department.id}" class="#{(current_user.department.id == department.id) ? 'in' : ''}"
+											.accordion-body.collapse id="collapse_department_#{department.id}"
 												.accordion-inner
 													- Catalogs::Product.all.each do |product|
 														= simple_form_for setup_price(department, product), remote: true do |f|
@@ -29,13 +30,12 @@
 																		= f.input_field :product_id, as: :hidden
 																		span.add-on грн/л
 																		button.btn type="button" onclick="$(this).closest(form).submit()" изменить
-																= product.fullname
+																.product = product.fullname
 		.span6
-			.text-center.text-info.well.well-small История изменения цен
+			.title.text-center.text-info.well.well-small История изменения цен
 			ul.media-list id="list"
 				== render(@records) || 'Элементов нет' 
-			#list-load.text-center.hide
-				i.icon-refresh.icon-2x.icon-spin
-				| загрузка списка
-	/ ul.media-list id="list"
-	/ 	== render(@catalogs) || 'Элементов нет' 
+				li#preload.media.active onclick="$(this).preload('show_content')"
+					.media-heading.text-center
+						i.icon-2x
+						span

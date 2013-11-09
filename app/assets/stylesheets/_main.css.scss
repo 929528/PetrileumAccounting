@@ -58,28 +58,47 @@
 	background-color: #FFFEF2;
 }
 html {
-	overflow: -moz-scrollbars-vertical; 
-	overflow-y: scroll;
+	// overflow: -moz-scrollbars-vertical; 
+	// overflow-y: scroll;
 	& .busy { cursor: wait !important }
 }
 body {
-	background-color: rgba(184, 184, 184, 0.8) ;
-	background-image: linear-gradient(white 2px, transparent 2px),
-	linear-gradient(90deg, white 2px, transparent 2px),
-	linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
-	linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
-	background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
-	background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+	background: #f7f7f7 image-url('bg-main.jpg') no-repeat center top;
 }
-.content {
-	background-color: #eeeeee;
-	padding: 1em;
-	border: solid 1px white;
+#right-panel {
+	position: fixed;
+	right: 0px;
+	top: 50px;
+	#flash_notice {
+		@include raised;
+		border-top: 5px solid #0081c2;
+		border-top-left-radius: 5px;
+		.alert {
+			border-radius: 0px;
+		}
+	}
+	.user {
+		width: 150px;
+		padding: 10px;
+		height: 50px;
+		@include background-hover;
+		@include raised;
+		// border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+		a {color: white}
+	}
+	.navs{
+		z-index: -1;
+		margin-top: 70px;
+		float: right;
+		.dropdown-menu {
+			border: none;
+			border-top-left-radius: 0px;
+			border-bottom-right-radius: 0px;
+		}
+	}
+}
 
-	-webkit-box-shadow:0 0px 2px rgba(0, 0, 0, 0.5) inset;
-	-moz-box-shadow:0 0px 2px rgba(0, 0, 0, 0.5) inset;
-	box-shadow:0 0px 2px rgba(0, 0, 0, 0.5) inset;
-}
 .fixed-top {
 	position: fixed;
 	right: 0;
@@ -88,9 +107,6 @@ body {
 	margin-bottom: 0;
 }
 #main {
-	#push {
-		height: 50px;
-	}
 	& > .content {
 		margin-top: 50px;
 		.media-list {
@@ -142,6 +158,7 @@ body {
 	}
 }
 .media {
+	border-bottom-left-radius: 5px;
 	.media-footer {
 		hr {
 			margin-top: 0px;
@@ -160,12 +177,25 @@ body {
 		}
 	}
 }
+.title {
+	@include background;
+	border: none;
+}
 .accordion {
-	.accordion-heading {
-		@include background-hover;
-		a {color: white}
+	.accordion-group {
+		border: none;
+		.accordion-heading {
+			border-bottom-left-radius: 5px;
+			border-left: solid 2px #0088cc;
+			border-left: solid 2px white;
+			@include background-hover;
+			@include raised;
+			// @include background;
+			a {color: white}
+		}
 	}
 	.accordion-body {
-		background-color: #FFFEF2;
+		.accordion-inner {border: none}
+		.product {color: white}
 	}
 }

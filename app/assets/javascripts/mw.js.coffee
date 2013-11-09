@@ -25,6 +25,7 @@ methods =
 	submit: (state) ->
 		if state == 'close'
 			this.media 'hide'
+			$('#flash_notice').flash 'hide'
 		else
 			inputs = []
 			inputs.push $("<input>").attr("type", "hidden").attr("name", "status").val(state)

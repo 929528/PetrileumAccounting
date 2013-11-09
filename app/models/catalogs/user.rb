@@ -4,11 +4,11 @@ class Catalogs::User < ActiveRecord::Base
 
 	has_secure_password
 
-	validates :name, presence: true, length: {maximum: 30, minimum: 4}, uniqueness: true
+	validates_presence_of :name, :email, presence: true
+	validates :name, length: {maximum: 30, minimum: 4}, uniqueness: true, allow_blank:true
 	validates :email, format: { with: VALID_EMAIL_REGEX },
-	uniqueness: { case_sensitive: false }
-	validates :password, presence: true, length: {minimum: 6, maximum: 15}
-	validates :password_confirmation, presence: true
+	uniqueness: { case_sensitive: false }, allow_blank:true
+	validates :password, length: {minimum: 6, maximum: 15}, allow_blank:true
 
 	before_save do |user|
 		user.email.downcase!
