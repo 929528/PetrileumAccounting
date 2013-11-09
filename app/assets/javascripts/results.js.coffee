@@ -10,6 +10,6 @@ methods =
 			talons.push talon
 		results = this.closest('.body').find('.results')
 		products = {}
-		for talon in talons
-			products[talon.product]['price'] = 1
-		console.log products
+		# for talon in talons
+		# 	# products[talon.product]['price'] = 1
+		# console.log products
