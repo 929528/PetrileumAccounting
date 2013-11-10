@@ -63,7 +63,12 @@ html {
 	& .busy { cursor: wait !important }
 }
 body {
-	background: #f7f7f7 image-url('bg-main.jpg') no-repeat center top;
+	background: #f7f7f7 image-url('bg-main.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	overflow: auto;
 }
 #right-panel {
 	position: fixed;

@@ -30,8 +30,10 @@ $ ->
 
 		$('.actions').on 'addAction', ->
 			show_notice 'success', 'Талон добавлен в список'
+			that.find('.actions').results 'init'
 		$('.actions').on 'removeAction', ->
 			show_notice 'success', 'Талон удален из списка'
+			that.find('.actions').results 'init'
 		that.find('.actions').results 'init'
 			
 	$('#preload').preload 'init'

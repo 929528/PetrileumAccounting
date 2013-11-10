@@ -25,6 +25,6 @@ module PetroleumAccounting
         config.action_controller.include_all_helpers = false
         # config.autoload_paths += %W(#{config.root}/lib)
 
-        config.generators.assets = true
+        config.generators.assets = false
     end
 end

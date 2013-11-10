@@ -6,6 +6,7 @@ methods =
 	init_action: ->
 		@this = this
 		this.find('a.close').on 'click', =>
-			@this.closest('.actions').trigger 'removeAction'
+			results = @this.closest('.actions')
 			@this.remove()
+			results.trigger 'removeAction'
 		return @this

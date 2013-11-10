@@ -1,12 +1,12 @@
 = content_tag :div, class: "action", data: {barcode: issue.talon.barcode, product: Russian::translit(issue.talon.product.name), amount: issue.talon.amount.value, price: issue.price}
+	- if issue.new_record?
+		a.close x
 	.talon
-		.header
-			.amount = issue.talon.amount.value
-			.product = issue.talon.product.name
+		.product= issue.talon.product.name
+		.amount= "#{issue.talon.amount.value}л"
+		.barcode= issue.talon.barcode
 	.attr
-		- if issue.new_record?
-			a.close x
-		.sum = "сумма: #{issue.price * issue.talon.amount.value}"
+		.sum = "цена: #{issue.price} грн/л, сумма: #{issue.price * issue.talon.amount.value} грн"
 		.expires = issue.expires.strftime "действителен до: %d/%m/%y"
 	= simple_fields_for "document[issues_attributes][#{issue.talon.barcode}]", issue do |f|
 		= f.input_field :id, as: :hidden

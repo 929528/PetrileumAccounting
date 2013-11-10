@@ -18,6 +18,7 @@ class Documents::Actions::Talons::Issue < ActiveRecord::Base
 	end
 	def init_action
 		@contract = Catalogs::Contract.find(contract) if contract
+		# TODO @contract present if !contract
 		@department = Catalogs::Department.find(department) if department
 		set_price 
 		set_expires

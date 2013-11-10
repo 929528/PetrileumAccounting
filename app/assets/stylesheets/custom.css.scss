@@ -20,23 +20,29 @@
 #flash_notice, .form-errors { &:hover { cursor: wait } }
 
 .actions {
-	overflow: -moz-scrollbars-vertical; 
-	overflow-y: scroll;
-	max-height: 150px;
-	// overflow: auto;
-	border: solid 1px #999;
 	padding: 0.5em;
 	.action {
 		margin-right: 5px;
 		margin-bottom: 5px;
 		border: solid 1px #0088cc;
 		display: inline-block;
+		width: 200px;
+		a.close {
+			margin-right: 2px;
+			margin-top: -2px;
+			color: white;
+			opacity: 0.8;
+			&:hover {opacity: 1;}
+		}
 		.talon {
-			display: inline-block;
+			// display: inline;
+			.amount {padding-left: 5px;display: inline;font-size: 1.2em;}
+			.product {padding-left: 2px;display: inline;font-size: 1.2em;}
+			.barcode {padding-left: 10px;display: inline;}
 		}
 		.attr {
 			font-size: 0.8em;
-			display: inline-block;
+			// display: block;
 			// border: solid 1px red;
 			padding-left: 2px;
 			padding-right: 2px;
@@ -82,6 +88,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 			.body {
 				padding-top: 5px;
 				padding-bottom: 5px;
+				.results {
+					border: solid 1px #e3e3e3;
+					background-color: #f9f9f9;
+					margin-right: -20px;
+					.product {
+						border-right: solid 1px #e3e3e3;
+						padding-right: 10px;
+						padding-left: 10px;
+						display: inline-block;
+					}
+				}
+				.actions {
+					margin-right: -10px;
+					margin-top: 10px;
+					max-height: 200px;
+					overflow: auto;
+					margin-bottom: 0px;
+					background-color: #f9f9f9;
+				}
 			}
 		}
 	}

@@ -26,7 +26,7 @@ methods =
 
 	show_content: ->
 		@this = this
-		time = 10
+		time = 0
 		this.parent().find('.media:hidden').each ->
 			that = $(this)
 			setTimeout ->

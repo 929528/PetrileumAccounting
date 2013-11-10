@@ -4,7 +4,7 @@ class PricesController < ApplicationController
 		@records = PriceRecord.all.order('id DESC').offset(elements_count).limit(8)
 		respond_to do |format|
 			format.html
-			format.js {render 'index', status: @records.empty? ? 400 : 200 }
+			format.js {render 'index', status: @records.empty? ? 204 : 200 }
 		end
 	end
 	def create
