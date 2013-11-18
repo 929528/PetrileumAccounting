@@ -7,13 +7,14 @@ class Documents::TalonsRepaid < ActiveRecord::Base
 	validates_presence_of :department, :user, :repaids
 	validate :correct_state
 	validate :check_correct_actions, if: 'self.errors.empty?'
+	before_save :calculate_sum
 	before_save :change_talons_state, if: :held?
 
 	accepts_nested_attributes_for :repaids
 
 	def status= status
 		@last_state = self.held
-		self.held = true if status == 'held'
+		self.held = (status == 'held') ? true : false
 	end
 	def held?
 		self.held
@@ -38,5 +39,8 @@ class Documents::TalonsRepaid < ActiveRecord::Base
 	end
 	def correct_state
 		errors[:base] << 'Документ проведен' if @last_state
+	end
+	def calculate_sum
+		self.sum = self.repaids.inject(0){|sum,el| sum + el.price * el.talon.amount.value}
 	end
 end

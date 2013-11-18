@@ -1,0 +1,8 @@
+= content_tag 'li', class: 'media', data: {path: edit_catalogs_promotion_path(promotion)} do
+	.media-body
+		.media-heading 
+			= "№: #{promotion.id} Наименование: #{promotion.title}"
+			.pull-right
+				small.date = promotion.created_at.strftime "Создан: %d/%m/%Y"
+				= link_to content_tag(:i, '',class: "delete icon-remove-sign"), catalogs_promotion_path(promotion), method: :delete, confirm: "Вы собираетесь удалить #{promotion.title}, Вы уверены?"
+	.media-window.hide

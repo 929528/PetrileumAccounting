@@ -6,6 +6,7 @@ class Catalogs::Talon < ActiveRecord::Base
 
 	VALID_BARCODE_REGEX = /\A[2,5][1-5]\d{8}\z/
 	validates :barcode, presence: true, uniqueness: true
+	validates :barcode, numericality: true, length: {is: 10}, allow_blank: true 
 	validates :barcode, format: { with: VALID_BARCODE_REGEX }, allow_blank: true
 	validates_presence_of :amount, :state, :product, if: 'self.errors.empty?'
 

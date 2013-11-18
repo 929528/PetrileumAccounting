@@ -1,0 +1,246 @@
+@import "bootstrap";
+@import "font-awesome";
+@import 're_bootstrap';
+@import 'main';
+
+@mixin raised {
+	-webkit-box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);
+	box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+	&:before, &:after {
+		content:"";
+		position:absolute;
+		z-index:-2;
+	}
+} 
+body {
+	background: #f7f7f7 image-url('bg-main.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	overflow: auto;
+}
+
+#main {
+	& > .content {
+		margin-top: 50px;
+		.media-list {
+			& > .media {
+				margin-bottom: 5px;
+				margin-top: 0px;
+				border-left: solid 2px #0088cc;
+				@include background;
+				-webkit-transition:all 0.2s ease;
+				-moz-transition:all 0.3s ease;
+				a {
+					margin-left: 10px;
+					i:hover {@extend .icon-2x}
+				}
+				&:hover { 
+					border-left: solid 2px white;
+					cursor: pointer;
+					@include background-hover;
+					@include raised;
+					a {color: white}
+					& > .media-body {
+						color: white;
+						.state {
+							i {color: white}
+						}
+					}
+				}
+				.state {
+					margin-right: 10px;
+				}
+				.media-window {
+					margin-bottom: -6px;
+					margin-right: -6px;
+				}
+			}
+			& > .media.active {
+				@extend .media:hover;
+				margin-bottom: 20px;
+			}
+			& > .media.added {
+				@extend .media:hover;
+				@include background-new;
+				margin-bottom: 20px;
+			}
+			& > li{
+				padding: 0.5em;
+			}
+		}
+	}
+}
+.media {
+	border-bottom-left-radius: 5px;
+	.media-footer {
+		hr {
+			margin-top: 0px;
+		}
+		.buttons {
+			padding-top:5px; 
+			padding-bottom: 2px;
+			border-top-left-radius: 5px;
+			border: solid 1px #FFFEF2;
+			background-color: white;
+			-webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3) inset;
+			-moz-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3) inset;
+			box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3) inset;
+			margin-bottom: -20px;
+			margin-right: -5px;
+		}
+	}
+	.media-body {
+		.inline-block {
+			display: inline-block;
+			margin-right: 40px;
+		}
+	}
+}
+.title {
+	@include background;
+	border: none;
+}
+.accordion {
+	.accordion-group {
+		border: none;
+		.accordion-heading {
+			border-bottom-left-radius: 5px;
+			border-left: solid 2px #0088cc;
+			border-left: solid 2px white;
+			@include background-hover;
+			@include raised;
+			// @include background;
+			a {color: white}
+		}
+	}
+	.accordion-body {
+		.accordion-inner {border: none}
+		.product {color: white}
+	}
+}
+
+#flash_notice, .form-errors { &:hover { cursor: wait } }
+
+.actions {
+	padding: 0.5em;
+	.action {
+		margin-right: 5px;
+		margin-bottom: 5px;
+		border: solid 1px #0088cc;
+		display: inline-block;
+		width: 200px;
+		a.close {
+			margin-right: 2px;
+			margin-top: -2px;
+			color: white;
+			opacity: 0.8;
+			&:hover {opacity: 1;}
+		}
+		.talon {
+			// display: inline;
+			.amount {padding-left: 5px;display: inline;font-size: 1.2em;}
+			.product {padding-left: 2px;display: inline;font-size: 1.2em;}
+			.barcode {padding-left: 10px;display: inline;}
+		}
+		.attr {
+			font-size: 0.8em;
+			// display: block;
+			// border: solid 1px red;
+			padding-left: 2px;
+			padding-right: 2px;
+			background: rgb(255,255,255); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(241,241,241,1) 50%, rgba(225,225,225,1) 51%, rgba(246,246,246,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(241,241,241,1)), color-stop(51%,rgba(225,225,225,1)), color-stop(100%,rgba(246,246,246,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+}
+}
+}
+.talon {
+	color: white;
+	background-color: #0088cc;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+#new-media {
+	margin-left: -20px;
+	margin-right: -20px;
+	@include raised; 
+	border-left:solid 1px #0081c2;
+	border-right:solid 1px #0081c2;
+	border-bottom:solid 1px #0081c2;
+	border-bottom-left-radius: 5px;
+	.actions {
+		max-height: 200px;
+		overflow: auto;
+	}
+	.results {width: 935px; min-height: 60px;}
+}
+.media-window {
+	.tabbable {
+		li.active a {
+			@include background-hover;
+			color: white;
+		}
+
+	}
+	.media {
+		padding: 20px 5px 20px 5px;
+		@include background-hover;
+		// background-color: #F7F7F7;
+		.media-body {
+			.body {
+				padding-top: 5px;
+				padding-bottom: 5px;
+				.results {
+					width: 884px;
+					position: absolute;
+					margin-top: 7px;
+					margin-left: 7px;
+					margin-bottom: 5px;
+					padding-bottom: 7px;
+					// margin-right: -7px;
+					background-color: #f9f9f9;
+					border-bottom: solid 1px #e3e3e3;
+					.product {
+						font-size: 0.9em;
+					}
+					.total {
+						width: 200px;
+						span {display: inline-block;}
+					}
+					.product {
+						border-right: solid 1px #e3e3e3;
+						padding-right: 10px;
+						padding-left: 10px;
+						display: inline-block;
+					}
+				}
+				.actions {
+					// margin-right: -10px;
+					// margin-top: -77px;
+					padding-top: 77px;
+					margin-bottom: 0px;
+					background-color: #f9f9f9;
+				}
+			}
+		}
+	}
+	.media-footer {
+		.btn {
+			margin-left: 5px;
+		}
+	}
+}
+#preload {
+	color: white;
+}

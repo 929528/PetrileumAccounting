@@ -6,7 +6,7 @@
 					i.icon-barcode
 				= f.input_field :barcode, placeholder: "Введите штрихкод", data: {path: "#{new_repaid_documents_talons_repaids_path}"}
 .body
-	| BODY
 	= simple_form_for @TalonsRepaid, as: :document, remote: true do |d|
-		.actions
+		.results
+		.actions.well
 			== render @TalonsRepaid.repaids

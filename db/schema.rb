@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131105125659) do
+ActiveRecord::Schema.define(version: 20131114102836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20131105125659) do
     t.string   "fullname"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "activated",  default: false
+    t.string   "email"
   end
 
   create_table "catalogs_departments", force: true do |t|
@@ -68,6 +70,19 @@ ActiveRecord::Schema.define(version: 20131105125659) do
     t.string   "symbol"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "catalogs_promotions", force: true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "title"
+    t.text     "descr"
+    t.string   "href"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "usage"
   end
 
   create_table "catalogs_talons", force: true do |t|
@@ -108,9 +123,23 @@ ActiveRecord::Schema.define(version: 20131105125659) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "department_id"
+    t.integer  "role_id"
   end
 
   add_index "catalogs_users", ["department_id"], name: "index_catalogs_users_on_department_id", using: :btree
+  add_index "catalogs_users", ["role_id"], name: "index_catalogs_users_on_role_id", using: :btree
+
+  create_table "catalogs_users_rights", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "catalogs_users_roles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "discounts", force: true do |t|
     t.integer  "product_id"
@@ -166,6 +195,7 @@ ActiveRecord::Schema.define(version: 20131105125659) do
     t.boolean  "held"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "sum"
   end
 
   add_index "documents_talons_repaids", ["department_id"], name: "index_documents_talons_repaids_on_department_id", using: :btree

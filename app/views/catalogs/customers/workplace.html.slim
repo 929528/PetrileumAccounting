@@ -1,0 +1,7 @@
+.row-fluid
+	.span3
+		= link_to(content_tag(:i,"",class: "icon-user icon-2x") +  " " + current_user.name.to_s + " | Выход", signout_path, method: :delete)
+	.span9
+		== render @customer.talons
+
+

@@ -1,0 +1,10 @@
+#content.row-fluid
+	.span4
+		= simple_form_for :session, url: sessions_path do |f|
+			= f.input :name, label: false, placeholder: "Ваш адрес электронной почты"
+			= f.input :password, label: false, placeholder: "Ваш пароль"
+			= f.button :submit, 'Войти'
+			= f.input :remember_me, as: :boolean, inline_label: 'Оставаться в системе', label: false
+			= link_to 'Зарегестрироваться', signup_path, remote: true 
+	#content-info.span8
+		| ОПИСАЛОВО ДЛЯ ПОРТАЛА

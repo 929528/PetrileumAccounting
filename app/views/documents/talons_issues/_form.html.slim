@@ -1,17 +1,18 @@
 = simple_form_for setup_form(@TalonsIssue), as: :document, html: {class: "form-horizontal"}, remote: true do |d|
-	.header
-		.client
-			.row-fluid
-				.span6
-					= d.input :customer_name, label: "Клиент", placeholder: "Введите имя клиента", input_html: {data: {provide: "typeahead", source: catalogs_customers_path, target: "#contract_for_#{@TalonsIssue.id}", update: get_contracts_catalogs_customers_path}}
-				.span6
-					= d.input :contract_id, label: "Договор", as: :select, include_blank: false, collection: @TalonsIssue.contract.customer.contracts, input_html: {id: "contract_for_#{@TalonsIssue.id}"}
-		.organization
-			.row-fluid
-				.span6
-					= d.input :organization_name, label: "Организация", placeholder: "Введите имя организации", input_html: {data: {provide: "typeahead", source: catalogs_organizations_path, target: "#department_for_#{@TalonsIssue.id}", update: get_departments_catalogs_organizations_path}}
-				.span6
-					= d.input :department_id, label: "Подразделение", as: :select, include_blank: false, collection: @TalonsIssue.department.organization.departments, input_html: {id: "department_for_#{@TalonsIssue.id}"}
+	.header.row-fluid
+		.span10
+			.client
+				.row-fluid
+					.span6
+						= d.input :customer_name, label: "Клиент", placeholder: "Введите имя клиента", input_html: {data: {provide: "typeahead", source: catalogs_customers_path, target: "#contract_for_#{@TalonsIssue.id}", update: get_contracts_catalogs_customers_path}}
+					.span6
+						= d.input :contract_id, label: "Договор", as: :select, include_blank: false, collection: @TalonsIssue.contract.customer.contracts, input_html: {id: "contract_for_#{@TalonsIssue.id}"}
+			.organization
+				.row-fluid
+					.span6
+						= d.input :organization_name, label: "Организация", placeholder: "Введите имя организации", input_html: {data: {provide: "typeahead", source: catalogs_organizations_path, target: "#department_for_#{@TalonsIssue.id}", update: get_departments_catalogs_organizations_path}}
+					.span6
+						= d.input :department_id, label: "Подразделение", as: :select, include_blank: false, collection: @TalonsIssue.department.organization.departments, input_html: {id: "department_for_#{@TalonsIssue.id}"}
 	.body
 		.row-fluid
 			.span3
@@ -22,7 +23,7 @@
 								i.icon-barcode
 							= f.input_field :barcode, placeholder: "Введите штрихкод", data: {path: "#{new_issue_documents_talons_issues_path}"}, class: "input-block-level"
 			.span9
-				.results
+		.results
 		.actions.well
 			== render @TalonsIssue.issues
 

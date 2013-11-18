@@ -24,7 +24,5 @@ module PetroleumAccounting
         config.i18n.default_locale = :ru
         config.action_controller.include_all_helpers = false
         # config.autoload_paths += %W(#{config.root}/lib)
-
-        config.generators.assets = false
     end
 end

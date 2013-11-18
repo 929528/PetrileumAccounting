@@ -4,7 +4,7 @@
 			li.active
 				a href="#tab1" data-toggle="tab" Наименование
 			li
-				a href="#tab2" data-toggle="tab" Организация
+				a href="#tab2" data-toggle="tab" Права
 		.tab-content
 			#tab1.tab-pane.active
 				= f.input :name, label: "Наименование"
@@ -15,7 +15,12 @@
 				= f.input :password_confirmation, label: "Подтверждение"
 			#tab2.tab-pane
 				.row-fluid
-					.span6
-						= f.input :organization_name, placeholder: "Введите имя организации", input_html: {data: {provide: "typeahead", source: catalogs_organizations_path, target: "#department_for_#{@user.id}", update: get_departments_catalogs_organizations_path}}
-					.span6
-						= f.input :department_id, as: :select, include_blank: false, collection: @user.department.organization.departments, input_html: {id: "department_for_#{@user.id}"}
+					.organization
+						.span6
+							= f.input :organization_name, placeholder: "Введите имя организации", input_html: {data: {provide: "typeahead", source: catalogs_organizations_path, target: "#department_for_#{@user.id}", update: get_departments_catalogs_organizations_path}}
+						.span6
+							= f.input :department_id, as: :select, include_blank: false, collection: @user.try(:department).try(:organization).try(:departments), input_html: {id: "department_for_#{@user.id}"}
+					.role
+						.span6
+							| ROLE
+							= f.association :role, as: :radio_buttons

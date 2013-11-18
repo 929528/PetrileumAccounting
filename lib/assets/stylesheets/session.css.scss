@@ -1,0 +1,204 @@
+@import "bootstrap";
+@import "font-awesome";
+@import 're_bootstrap';
+@import 'main';
+
+body {
+}
+
+#main {
+	position: static;
+	overflow: hidden;
+}
+
+#promotion {
+	position: absolute;
+	bottom: 0;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	height: 350px;
+	.carousel {
+		overflow: hidden;
+		height: 400px;
+		.item {
+			-webkit-transition: opacity 1s;
+			-moz-transition: opacity 1s;
+			-ms-transition: opacity 1s;
+			-o-transition: opacity 1s;
+			transition: opacity 1s;
+			.title {
+				font-size: 3em;
+			}
+		}
+		.active.left, .active.right {
+			left:0;
+			opacity:0;
+			z-index:2;
+		}
+		.next, .prev {
+			left:0;
+			opacity:1;
+			z-index:1;
+		}
+	}
+}
+
+// #holder {
+// 	position: relative;
+// 	@include background-hover;
+// 	color: white;
+// 	.cornered-block {
+// 		font-size: 0px;
+// 		line-height: 0%;
+// 		margin-bottom: 0px;
+// 		width: 50%;
+// 		margin-left: -70px;
+// 		border-right: 70px solid transparent;
+// 		position: absolute;
+// 		left: 0;
+// 		z-index: 1;
+// 		&.white {
+// 			border-bottom: 40px solid white;
+// 			bottom: 0;
+// 			&:before {
+// 				content: '';
+// 				display: block;
+// 				position: absolute;
+// 				top: 0;
+// 				left: 100%;
+// 				font-size: 0px;
+// 				line-height: 0%;
+// 				margin-left: 70px;
+// 				width: 100%;
+// 				border-bottom: 40px solid white;
+// 				border-left: 70px solid transparent;
+// 			}
+// 		}
+// 		&.blue {
+// 			border-bottom: 40px solid #0088cc;
+// 			bottom: 100%;
+// 			&:before {
+// 				content: '';
+// 				display: block;
+// 				position: absolute;
+// 				top: 0;
+// 				left: 100%;
+// 				font-size: 0px;
+// 				line-height: 0%;
+// 				margin-left: 70px;
+// 				width: 100%;
+// 				border-bottom: 40px solid #0088cc;
+// 				border-left: 70px solid transparent;
+// 			}
+// 		}
+// 	}
+// 	.alert {
+// 		margin-bottom: 0px;
+// 		position: absolute;
+// 		width: 100%;
+// 		text-align: center;
+// 		border-radius: 0px;
+// 	}
+// 	.container {
+// 		@include background-hover;
+// 		// padding: 2em;
+// 		ul {
+// 			li {
+// 				border-radius: 5px;
+// 				margin: 1em;
+// 				&:hover {
+// 					cursor: pointer;
+// 				}
+// 			}
+// 		}
+// 		.span4 {
+// 			border-right: dotted 1px white
+// 		}
+// 		form {
+// 			a {color: white}
+// 		}
+// 	}
+// }
+// .footer {
+// 	height: 50px;
+// 	background-color: white;
+// }
+
+// #promotion{
+// 	.carousel-indicators {
+// 		width: 25px;
+// 		li {
+// 			border-radius: 20px;
+// 			margin-bottom: 5px;
+// 			width: 15px;
+// 			height: 15px;
+// 			background-color: #999;
+// 			opacity: 0.5;
+// 			&.active {
+// 				background-color: #0088cc;
+// 				opacity: 1;
+// 			}
+// 			&:hover {
+// 				opacity: 1;
+// 				cursor: pointer;
+// 			}
+// 		}
+// 	}
+// 	.carousel-inner > .item {
+// 		img { 
+// 			margin: 0 auto;
+// 		}
+// 		.title {
+// 			text-align: center;
+// 			position: relative;
+// 			font-size: 2em;
+// 			height: 50px;
+// 		}
+// 		.left {
+// 			// border: solid 1px green;
+// 			left: 0;
+// 			position: absolute;
+// 			top: 0;
+// 			height: 300px;
+// 			width: 50%;
+// 			.description {
+// 				margin-right: 200px;
+// 				text-align: right;
+// 				margin-left: 50px;
+// 			}
+// 		}
+// 		.right {
+// 			// border: solid 1px green;
+// 			// margin-top: 50px;
+// 			position: absolute;
+// 			right: 0;
+// 			top: 0;
+// 			width: 50%;
+// 			height: 300px;
+// 			.usage {
+// 				margin-left: 200px;
+// 				text-align: left;
+// 				margin-right: 50px;
+// 			}
+// 		}
+// 	}
+// }
+// #brands {
+// 	position: absolute;
+// 	bottom: 0;
+// 	margin-bottom: 80px;
+// 	width: 900px;
+// 	left: 50%;
+// 	margin-left: -450px;
+// 	.add {
+// 		display: none;
+// 		// font-size: 1.1em;
+// 		position: absolute; 
+// 		left: 50%;
+// 		width: 800px;
+// 		margin-left: -400px;
+// 		bottom: 0;
+// 		margin-bottom: -25px;
+// 	}
+// }
+

@@ -1,4 +1,4 @@
-= content_tag :div, class: "action", data: {barcode: issue.talon.barcode, product: Russian::translit(issue.talon.product.name), amount: issue.talon.amount.value, price: issue.price}
+= content_tag :div, class: "action", data: {barcode: issue.talon.barcode, product: issue.talon.product.name, amount: issue.talon.amount.value, price: issue.price}
 	- if issue.new_record?
 		a.close x
 	.talon

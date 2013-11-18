@@ -45,6 +45,7 @@ class Catalogs::CustomersController < CatalogsController
 		params.require(:customer).permit [
 			:name, 
 			:fullname, 
+			:email, 
 			contracts_attributes: [
 				:id, 
 				:contract_type_id, 

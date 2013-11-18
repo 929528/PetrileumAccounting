@@ -6,6 +6,19 @@ class Documents::Actions::Talons::Repaid < ActiveRecord::Base
 	validate :talon_expires, if: 'self.errors.empty?'
 	validates :talon, presence: true
 
+	def init
+		if self.new_record?
+			get_price unless self.talon.new_record?
+		end
+	end
+	def get_price
+		# Берем цену ПО ПОСЛЕДНЕЙ ЦЕНЕ РЕАЛИЗАЦИИ
+		self.price = Documents::Actions::Talons::Issue.where(talon: self.talon)\
+		.joins(:talons_issue)\
+		.where(documents_talons_issues: {held: true})\
+		.last.price
+	end
+
 	def barcode= barcode
 		self.talon = Catalogs::Talon.find_or_initialize_by barcode: barcode
 	end

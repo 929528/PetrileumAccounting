@@ -13,5 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.effect-slide
+//= require jquery.ui.effect-clip
 //= require bootstrap
-//= require_tree .
+//= require jquery.remotipart

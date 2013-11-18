@@ -1,0 +1,3 @@
+= simple_form_for :customer, url: signup_path, remote: true do |f|
+	= f.input :email, label: false, placeholder: "Электронный адресс"
+	= f.submit 'Проверить адрес', class: "btn"

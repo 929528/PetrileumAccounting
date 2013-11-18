@@ -24,6 +24,8 @@ namespace :db do
 		Catalogs::ContractType.create!(name: "Покупка-Продажа", freebie: false)
 		Catalogs::ContractType.create!(name: "Внутренние расходы", freebie: true)
 		Catalogs::ContractType.create!(name: "Внешние обязательства", freebie: false)
+		Catalogs::Users::Role.create!(name: "Guest")
+		Catalogs::Users::Role.create!(name: "Employee")
 		p "ALL DONE !"
 	end
 end

@@ -12,6 +12,7 @@ PetroleumAccounting::Application.routes.draw do
 			get 'get_departments', on: :collection 
 		end
 		resources :products
+		resources :promotions
 	end
 	resources :prices
 
@@ -25,8 +26,9 @@ PetroleumAccounting::Application.routes.draw do
 	end
 	# You can have the root of your site routed with "root"
 	root 'sessions#new'
-	get 'profile', to: 'users#show'
-	resources :sessions, only: [:new, :create, :destroy]
+	get 'profile', to: 'profiles#show'
+	resources :sessions
+	match '/signup' => 'sessions#sign_up', via: [:get, :patch, :post]
 	match '/signin' => 'sessions#new', via: :get
 	match '/signout' => 'sessions#destroy', via: :delete
 	# Example of regular route:

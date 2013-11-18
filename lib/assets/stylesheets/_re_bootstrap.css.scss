@@ -1,0 +1,26 @@
+.dropdown-menu {
+	min-width: 200px;
+}
+#flash_notice {
+	.alert {
+		margin-bottom: 0px;
+	}
+}
+.navbar {
+	margin-bottom: 0px;
+	.container {width: 940px}
+	.navbar-inner {border-radius: 0px;}
+}
+
+.form-horizontal {
+	.control-label {
+		text-align: left;
+		width: 120px;
+	}
+	.control-group {
+		margin-bottom: 10px;
+		.controls {
+			margin-left: 120px;
+		}
+	}
+}

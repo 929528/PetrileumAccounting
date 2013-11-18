@@ -1,10 +1,12 @@
 #flash_notice.pull-left.hide
 	== render '/flash_notice' 
 .user.pull-right
-	= link_to(content_tag(:i,"",class: "icon-user icon-2x") +  " " + current_user.name.to_s + " | Выход",signout_path , method: "delete")
-.navs.dropdown
-	ul.dropdown-menu style="display: block;"
-		== render "navigation/top_panel/catalogs"
-		== render "navigation/top_panel/documents"
-		li.divider
-		li = link_to(content_tag(:i,"",class: "icon-th-list") + " Цены",  prices_path)
+	= link_to(content_tag(:i,"",class: "icon-user icon-2x") +  " " + current_user.name.to_s + " | Выход", signout_path, method: :delete)
+- if current_user.employee?
+	.navs.dropdown
+		ul.dropdown-menu style="display: block;"
+			== render "navigation/top_panel/catalogs"
+			== render "navigation/top_panel/documents"
+			li = link_to(content_tag(:i,"",class: "icon-th-list") + " Реклама",  catalogs_promotions_path)
+			li.divider
+			li = link_to(content_tag(:i,"",class: "icon-th-list") + " Цены",  prices_path)

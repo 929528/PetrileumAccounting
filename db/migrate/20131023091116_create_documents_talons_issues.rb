@@ -4,7 +4,7 @@ class CreateDocumentsTalonsIssues < ActiveRecord::Migration
       t.references :department, index: true
       t.references :contract, index: true
       t.references :user, index: true
-      t.boolean :held
+      t.boolean :held, default: false
 
       t.timestamps
     end

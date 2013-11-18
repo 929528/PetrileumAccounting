@@ -1,7 +1,9 @@
 = content_tag 'li', class: 'media', data: {path: edit_documents_talons_issue_path(talons_issue)} do
 	.media-body
+		.state.pull-left
+			i class="#{icon talons_issue.held} icon-2x"
 		.media-heading 
-			= "#{talons_issue.class.model_name.human count: '2'} №: #{talons_issue.id} "
+			= "#{talons_issue.class.model_name.human} №: #{talons_issue.id} "
 			.pull-right
 				.date = talons_issue.created_at.strftime "Создан: %d/%m/%Y в %H:%M:%S"
 		div

@@ -29,6 +29,8 @@ gem 'bootstrap-sass'
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 gem 'font-awesome-rails'
 gem 'cancan'
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'remotipart'
 gem 'pg'
 
 gem "slim"

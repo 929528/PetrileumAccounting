@@ -6,7 +6,25 @@ class Documents::Actions::Talons::Issue < ActiveRecord::Base
 	validates :talon, presence: true
 	validate :price_present, :expires_present, if: 'self.new_record?'
 
-	cattr_accessor :department, :contract
+	def init
+		if self.new_record?
+			set_price 
+			set_expires
+		end
+	end
+
+	def contract= contract
+		@contract = Catalogs::Contract.find contract
+	end
+	def contract 
+		@contract
+	end
+	def department= department
+		@department = Catalogs::Department.find department
+	end
+	def department
+		@department
+	end
 
 	def barcode= barcode
 		self.talon = Catalogs::Talon.find_or_initialize_by barcode: barcode
@@ -17,9 +35,6 @@ class Documents::Actions::Talons::Issue < ActiveRecord::Base
 		self.talon.barcode
 	end
 	def init_action
-		@contract = Catalogs::Contract.find(contract) if contract
-		# TODO @contract present if !contract
-		@department = Catalogs::Department.find(department) if department
 		set_price 
 		set_expires
 	end

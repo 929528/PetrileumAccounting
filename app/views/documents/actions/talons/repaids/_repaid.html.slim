@@ -1,12 +1,23 @@
-.action  data-barcode="#{repaid.talon.barcode}"
+/ .action  data-barcode="#{repaid.talon.barcode}"
+= content_tag :div, class: "action", data: {barcode: repaid.talon.barcode, product: repaid.talon.product.name, amount: repaid.talon.amount.value, price: repaid.price}
+	- if repaid.new_record?
+		a.close x
 	.talon
-		.barcode = repaid.talon.barcode
-		.state = repaid.talon.state.name
-		.amount = repaid.talon.amount.value
-		.product = repaid.talon.product.name
-		.document = repaid.talons_repaid
-		.expires = "Действителен до: #{repaid.talon.expires}"
-		.customer = repaid.talon.contract.customer.name
+		.product= repaid.talon.product.name
+		.amount= "#{repaid.talon.amount.value}л"
+		.barcode= repaid.talon.barcode
+	.attr
+		.sum = "цена: #{repaid.price} грн/л, сумма: #{repaid.price * repaid.talon.amount.value} грн"
+		.expires = repaid.talon.expires.strftime "действителен до: %d/%m/%y"
+	/ .talon
+		/ .barcode = repaid.talon.barcode
+		/ .state = repaid.talon.state.name
+		/ .amount = repaid.talon.amount.value
+		/ .product = repaid.talon.product.name
+		/ .document = repaid.talons_repaid
+		/ .expires = "Действителен до: #{repaid.talon.expires}"
+		/ .customer = repaid.talon.contract.customer.name
 	= simple_fields_for "document[repaids_attributes][#{repaid.talon.barcode}]", repaid do |f|
 		= f.input_field :id, as: :hidden
 		= f.input_field :barcode, as: :hidden
+		= f.input_field :price, as: :hidden

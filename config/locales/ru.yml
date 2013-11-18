@@ -16,9 +16,12 @@ ru:
       catalogs/product:
         one: Продукт
         other: Продукты
-      documents/talons_issues:
+      documents/talons_issue:
         one: Реализация талонов
         other: Реализации талонов
+      documents/talons_repaid:
+        one: Погашение талонов
+        other: Погашения талонов
     attributes:
       documents/talons_issue: 
         contract: "Договор"
@@ -26,13 +29,16 @@ ru:
         barcode: "Штрихкод"
       catalogs/customer:
         name: "Наименование"
+        email: "Электронный адресс"
       catalogs/organization:
         name: "Наименование"
       catalogs/product:
         name: "Наименование"
       catalogs/user:
         password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
         name: "Наименование"
         email: "Электронный адресс"
+        role: "Роль"
 
 

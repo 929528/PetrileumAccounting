@@ -1,0 +1,8 @@
+.pull-right
+	= image_tag @promotion.image.url :thumb
+div style="display: inline-block" = simple_form_for @promotion, as: :promotion, html: { multipart: true, class: "form-horizontal" }, remote: true do |f|
+	= f.input :title
+	= f.file_field :image
+	= f.input :descr, input_html: {class: "input-xxlarge"}
+	= f.input :usage, input_html: {class: "input-xxlarge"}
+	= f.input :href

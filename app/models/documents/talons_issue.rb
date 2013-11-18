@@ -23,7 +23,7 @@ class Documents::TalonsIssue < ActiveRecord::Base
 
 	def status= status
 		@last_state = self.held
-		self.held = true if status == 'held'
+		self.held = (status == 'held') ? true : false
 	end
 	def held?
 		self.held

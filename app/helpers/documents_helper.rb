@@ -4,4 +4,7 @@ module DocumentsHelper
 			render "navigation/top_panel/control_panel", buttons: buttons
 		end
 	end
+	def icon bool 
+		bool ? 'icon-ok text-error' : 'icon-save text-info' 
+	end
 end

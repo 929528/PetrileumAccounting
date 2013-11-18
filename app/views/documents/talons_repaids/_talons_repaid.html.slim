@@ -1,7 +1,16 @@
 = content_tag 'li', class: 'media', data: {path: edit_documents_talons_repaid_path(talons_repaid)} do
 	.media-body
+		.state.pull-left
+			i class="#{icon talons_repaid.held} icon-2x"
 		.media-heading 
-			= "№: #{talons_repaid.id} Полное наименование: #{talons_repaid}"
+			= "#{talons_repaid.class.model_name.human} №: #{talons_repaid.id} "
 			.pull-right
-				small.date = talons_repaid.created_at.strftime "Создан: %d/%m/%Y в %H:%M:%S"
+				.date = talons_repaid.created_at.strftime "Создан: %d/%m/%Y в %H:%M:%S"
+		div
+			= "Организация: #{talons_repaid.department.organization.name}"
+			.pull-right= "Автор #{talons_repaid.user.name}"
+		div
+			= "Подразделение: #{talons_repaid.department.name}"
+			.pull-right = "Сумма: #{talons_repaid.sum} грн."
+		
 	.media-window.hide
