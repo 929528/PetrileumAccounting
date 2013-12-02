@@ -1,10 +1,17 @@
 class Documents::Actions::Talons::Repaid < ActiveRecord::Base
 	belongs_to :talons_repaid, inverse_of: :repaids
 	belongs_to :talon, class_name: 'Catalogs::Talon', validate: true
+	belongs_to :contract, class_name: 'Catalogs::Contract'
+
+	scope :customer, -> (customer) { where(contract_id: customer.contract_ids) }
 
 	validate :correct_talon_state
 	validate :talon_expires, if: 'self.errors.empty?'
 	validates :talon, presence: true
+
+	before_save do |repaid|
+		repaid.contract = repaid.talon.contract
+	end
 
 	def init
 		if self.new_record?

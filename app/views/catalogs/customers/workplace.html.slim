@@ -1,6 +1,7 @@
+= provide :title, "Личный кабинет пользователя #{current_user.view}"
 .row-fluid
 	.span3
-		= link_to(content_tag(:i,"",class: "icon-user icon-2x") +  " " + current_user.name.to_s + " | Выход", signout_path, method: :delete)
+		= link_to(content_tag(:i,"",class: "icon-user icon-2x") +  " " + current_user.view.to_s + " | Выход", signout_path, method: :delete)
 	.span9
 		== render @customer.talons
 

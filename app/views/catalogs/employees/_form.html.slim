@@ -1,0 +1,29 @@
+= simple_form_for setup_form(@employee), as: :employee, html: {class: "form-horizontal"}, remote: true do |f|
+	.tabbable
+		ul.nav.nav-tabs
+			li.active
+				a href="#tab_#{@employee.id}_1" data-toggle="tab" Наименование
+			li
+				a href="#tab_#{@employee.id}_2" data-toggle="tab" Права
+		.tab-content
+			.tab-pane.active id="tab_#{@employee.id}_1"
+				= f.input :name, label: "Имя"
+				= f.input :surname, label: "Фамилия"
+				= f.input :lastname, label: "Отчество"
+				= f.input :email, label: "e-mail"
+				hr
+				= f.input :password, label: "Пароль"
+				= f.input :password_confirmation, label: "Подтверждение"
+			.tab-pane id="tab_#{@employee.id}_2"
+				.row-fluid
+					.span9
+				/ .row-fluid
+				/ 	.organization
+				/ 		.span6
+				/ 			= f.input :organization_name, placeholder: "Введите имя организации", input_html: {data: {provide: "typeahead", source: catalogs_organizations_path, target: "#department_for_#{@user.id}", update: get_departments_catalogs_organizations_path}}
+				/ 		.span6
+				/ 			= f.input :department_id, as: :select, include_blank: false, collection: @user.try(:department).try(:organization).try(:departments), input_html: {id: "department_for_#{@user.id}"}
+				/ 	.role
+				/ 		.span6
+				/ 			| ROLE
+				/ 			= f.association :role, as: :radio_buttons

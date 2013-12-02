@@ -1,0 +1,3 @@
+$('.right-panel').fadeOut(200, function(){ 
+	$(this).html("<%=j render template: 'sessions/signin_form'%>").fadeIn(200).find('.info i').popover()
+})

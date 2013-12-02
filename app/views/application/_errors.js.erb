@@ -1,0 +1,3 @@
+$("#flash_notice").flash('hide', function() {
+	$("#flash_notice").html("<%=j render "error_messages", name: item %>").flash('show')
+})

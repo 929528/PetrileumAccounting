@@ -1,22 +1,43 @@
 module SessionsHelper
-	def sign_in(user)
-		cookies[:remember_token] = user.remember_token
-		self.current_user = user
+
+	def signed_in?
+		!current_profile.nil?
 	end
-	def current_user=(user)
-		@current_user = user
+	def current_profile
+		@current_profile ||= session[:current_profile_id] ? Catalogs::Profile.find_by_id(session[:current_profile_id]) : nil
 	end
 	def current_user
-		@current_user ||= Catalogs::User.find_by_remember_token(cookies[:remember_token])
+		@current_user ||= current_profile.user
 	end
-	def signed_in?
-		!current_user.nil?
+	def sign_in profile
+		session[:current_profile_id] = profile.id
+		self.current_profile = profile
+	end
+	def current_profile= profile
+		@current_profile = profile
 	end
 	def sign_out
-		self.current_user = nil
-		cookies.delete(:remember_token)
+		self.current_profile = nil
+		session[:current_profile_id] = nil
 	end
-	def promotions
-		Catalogs::Promotion.all
+	def can_signup? customer
+		customer.errors[:base] << "Email пустой" if customer.email.blank?
+		customer.errors[:base] << "Пользователь не найден в базе" if !customer.email.blank? && customer.new_record?
+		customer.errors[:base] << "Пользователь уже создан" if customer.activated? || customer.profile.present?
+		if customer.errors.any?
+			false
+		else
+			true
+		end
+	end
+	def can_reset_password? profile 
+		profile.errors[:base] << "Email пустой" if profile.login.blank?
+		profile.errors[:base] << "Профиль пользователя не найден" if profile.errors.empty? && profile.new_record?
+		# profile.errors[:base] << "Профиль пользователя не найден" if profile.errors.empty? && !profile.customer?
+		if profile.errors.any?
+			false
+		else
+			true
+		end
 	end
 end

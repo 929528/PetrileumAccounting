@@ -1,0 +1,30 @@
+.info
+	= content_tag :i,'', class: 'info icon-info-sign icon-3x', data: {placement: 'right', title: "Регистрация нового пользователя", content: 'Для завершения регистрации - следуйте трем шагам описанным ниже. Если у Вас возникли трудности при регистрации - свяжитесь с менеджером по телефону (057)-703-34-34 для уточнения проблемы'}
+#accordion.accordion
+	.accordion-group
+		.accordion-heading.text-left
+			| 1. Введите электронный адресс, указанный при получении талонов
+		#collapseEmail.accordion-body.collapse.in
+			.accordion-inner
+				.signup_email_form
+					= simple_form_for :customer, remote: true do |f|
+						= f.input :email, label: false, placeholder: "Электронный адресс"
+						= f.submit "Далее", class: 'btn btn-large btn-link btn-block'
+	.accordion-group
+			.accordion-heading.text-left
+				| 2. Создайте пароль
+			#collapsePassword.accordion-body.collapse
+				.accordion-inner
+					.signup_password_form
+						= simple_form_for :profile_attributes, remote: true do |f|
+							= f.input :password, label: false, placeholder: "Новый пароль"
+							= f.input :password_confirmation, label: false, placeholder: "Подтвердите свой пароль"
+							= f.submit 'Подтвердить', class: "btn btn-large btn-link btn-block"
+.accordion-group
+			.accordion-heading.text-left
+				| 3. Авторизуйтесь
+			#collapseDone.accordion-body.collapse
+				.accordion-inner
+					.signup_done_info
+						| Теперь вы можете авторизоваться в системе
+= link_to 'вернуться', signup_path(commit: 'return'), remote: true

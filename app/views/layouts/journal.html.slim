@@ -1,0 +1,12 @@
+DOCTYPE html
+html
+	head
+  		title = full_title yield :title
+		= stylesheet_link_tag "application", 'backend', media: "all"
+		= javascript_include_tag 'application', 'backend', params[:controller]
+		= csrf_meta_tags
+	body
+		header
+			== render 'navigation/navigation'
+		#main.container
+			= yield

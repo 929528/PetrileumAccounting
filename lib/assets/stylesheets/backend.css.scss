@@ -17,17 +17,19 @@
 	}
 } 
 body {
-	background: #f7f7f7 image-url('bg-main.jpg') no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	overflow: auto;
+	background-color: #3A92C8;
+	background: -webkit-radial-gradient(circle,#94D2F8,#3A92C8);
+	background: -moz-radial-gradient(circle,#94d2f8,#3a92c8);
+	background: -ms-radial-gradient(circle,#94d2f8,#3a92c8);
 }
 
 #main {
 	& > .content {
 		margin-top: 50px;
+		&.well {
+			background-color: rgba(255,255,255,.2);
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#50990000,endColorstr=#50990000); 
+		}
 		.media-list {
 			& > .media {
 				margin-bottom: 5px;
@@ -45,7 +47,6 @@ body {
 					cursor: pointer;
 					@include background-hover;
 					@include raised;
-					a {color: white}
 					& > .media-body {
 						color: white;
 						.state {
@@ -202,7 +203,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 				padding-top: 5px;
 				padding-bottom: 5px;
 				.results {
-					width: 884px;
+					width: 844px;
 					position: absolute;
 					margin-top: 7px;
 					margin-left: 7px;

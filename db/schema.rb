@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131114102836) do
+ActiveRecord::Schema.define(version: 20131201131128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,24 @@ ActiveRecord::Schema.define(version: 20131114102836) do
 
   add_index "catalogs_departments", ["organization_id"], name: "index_catalogs_departments_on_organization_id", using: :btree
 
+  create_table "catalogs_employees", force: true do |t|
+    t.string   "name"
+    t.string   "surname"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "department_id"
+    t.string   "lastname"
+  end
+
+  add_index "catalogs_employees", ["department_id"], name: "index_catalogs_employees_on_department_id", using: :btree
+
+  create_table "catalogs_employees_rights", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "catalogs_organizations", force: true do |t|
     t.string   "name"
     t.string   "fullname"
@@ -71,6 +89,19 @@ ActiveRecord::Schema.define(version: 20131114102836) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "catalogs_profiles", force: true do |t|
+    t.string   "password_digest"
+    t.string   "remember_token"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "preferences"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "login"
+  end
+
+  add_index "catalogs_profiles", ["user_id", "user_type"], name: "index_catalogs_profiles_on_user_id_and_user_type", using: :btree
 
   create_table "catalogs_promotions", force: true do |t|
     t.string   "image_file_name"
@@ -114,33 +145,6 @@ ActiveRecord::Schema.define(version: 20131114102836) do
     t.datetime "updated_at"
   end
 
-  create_table "catalogs_users", force: true do |t|
-    t.string   "name"
-    t.string   "surname"
-    t.string   "email"
-    t.string   "password_digest"
-    t.string   "remember_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "department_id"
-    t.integer  "role_id"
-  end
-
-  add_index "catalogs_users", ["department_id"], name: "index_catalogs_users_on_department_id", using: :btree
-  add_index "catalogs_users", ["role_id"], name: "index_catalogs_users_on_role_id", using: :btree
-
-  create_table "catalogs_users_rights", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "catalogs_users_roles", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "discounts", force: true do |t|
     t.integer  "product_id"
     t.integer  "customer_id"
@@ -170,8 +174,10 @@ ActiveRecord::Schema.define(version: 20131114102836) do
     t.decimal  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "contract_id"
   end
 
+  add_index "documents_actions_talons_repaids", ["contract_id"], name: "index_documents_actions_talons_repaids_on_contract_id", using: :btree
   add_index "documents_actions_talons_repaids", ["talon_id"], name: "index_documents_actions_talons_repaids_on_talon_id", using: :btree
   add_index "documents_actions_talons_repaids", ["talons_repaid_id"], name: "index_documents_actions_talons_repaids_on_talons_repaid_id", using: :btree
 
@@ -179,7 +185,7 @@ ActiveRecord::Schema.define(version: 20131114102836) do
     t.integer  "department_id"
     t.integer  "contract_id"
     t.integer  "user_id"
-    t.boolean  "held"
+    t.boolean  "held",          default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "sum"
@@ -192,7 +198,7 @@ ActiveRecord::Schema.define(version: 20131114102836) do
   create_table "documents_talons_repaids", force: true do |t|
     t.integer  "department_id"
     t.integer  "user_id"
-    t.boolean  "held"
+    t.boolean  "held",          default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "sum"

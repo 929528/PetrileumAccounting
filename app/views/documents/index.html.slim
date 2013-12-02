@@ -1,9 +1,6 @@
 = provide :title, "Документ: #{@documents.model.model_name.human count: '2'}"
 = stored_control_panel
-.content
+.content.well
 	ul.media-list id="list" 
 		== render(@documents) || 'Элементов нет' 
-		li#preload.media.active onclick="$(this).preload('show_content')"
-			.media-heading.text-center
-				i.icon-2x
-				span
+		== render partial: 'catalogs/preload'

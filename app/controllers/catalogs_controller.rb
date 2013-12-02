@@ -1,4 +1,5 @@
 class CatalogsController < ApplicationController
+	layout 'journal'
 	before_filter :init
 	def index catalog
 		elements_count = params[:elements_count]
@@ -18,7 +19,6 @@ class CatalogsController < ApplicationController
 			render partial: 'errors', locals: {item: catalog}
 		end
 	end
-
 
 	private
 

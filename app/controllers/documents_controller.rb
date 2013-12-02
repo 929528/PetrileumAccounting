@@ -1,4 +1,5 @@
 class DocumentsController < ApplicationController
+	layout 'journal'
 	before_filter :init
 	def index documents 
 		elements_count = params[:elements_count]

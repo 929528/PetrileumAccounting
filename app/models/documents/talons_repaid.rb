@@ -1,6 +1,6 @@
 class Documents::TalonsRepaid < ActiveRecord::Base
 	belongs_to :department, class_name: 'Catalogs::Department'
-	belongs_to :user, class_name: 'Catalogs::User'
+	belongs_to :user, class_name: 'Catalogs::Employee'
 
 	has_many :repaids, class_name: 'Actions::Talons::Repaid', validate: false
 

@@ -3,5 +3,7 @@
 		.media-heading 
 			= "№: #{customer.id} Полное наименование: #{customer.fullname}"
 			.pull-right
-				small.date = customer.created_at.strftime "Создан: %d/%m/%Y"
+				small.date = customer.created_at.strftime "Создан: %d/%m/%Y "
+				- if customer.activated? 
+					small Активирован
 	.media-window.hide

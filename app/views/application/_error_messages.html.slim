@@ -1,0 +1,6 @@
+-if name.errors.any?
+	.alert.alert-error
+		a.close data-dismiss="alert" href="#" &times;
+		- name.errors.full_messages.each do |msg|
+			.error.text-center
+				 = "*#{msg}"

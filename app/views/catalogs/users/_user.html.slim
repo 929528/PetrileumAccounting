@@ -1,7 +1,0 @@
-= content_tag 'li', class: 'media', data: {path: edit_catalogs_user_path(user)} do
-	.media-body
-		.media-heading 
-			= "№: #{user.id} Полное наименование: #{user.surname}"
-			.pull-right
-				small.date = user.created_at.strftime "Создан: %d/%m/%Y"
-	.media-window.hide

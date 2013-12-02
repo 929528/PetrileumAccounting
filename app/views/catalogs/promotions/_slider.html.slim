@@ -1,11 +1,14 @@
-.carousel.slide
-	/ ol.carousel-indicators
+#slider.carousel.slide
+	ul.carousel-indicators
 		- promotions.count.times do |count|
-			li class="#{(count == 0)? 'active' : ''}" data-target="#promotion" data-slide-to="#{count}"
+			li class="#{(count == 0)? 'active' : ''}" data-target="#slider" data-slide-to="#{count}"
 	.carousel-inner
 		- promotions.each_with_index do |promotion, index|
 			.item class="#{(index == 0)? 'active' : ''}"
-				.image = image_tag promotion.image.url :large
-				/ .description
-					.text =raw promotion.usage
-				.title = link_to promotion.title, promotion.href
+				.image 
+					= image_tag promotion.image.url :large
+				.title
+					.resize =raw promotion.title
+				.descr
+					.resize =raw promotion.descr
+				.url-wrapper = link_to '', promotion.href

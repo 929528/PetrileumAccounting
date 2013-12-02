@@ -1,0 +1,10 @@
+= provide :title, "Страница авторизации"
+.signin_form
+	.info
+		= content_tag :i,'', class: 'info icon-info-sign icon-3x', data: {placement: 'right', title: "Система учета НП", content: 'Получайте подрубную информацию о состоянии Ваших талонов, пройдя авторизацию'}
+	= simple_form_for :session, url: sessions_path do |f|
+		= f.input :login, label: false, placeholder: "Ваш адрес электронной почты"
+		= f.input :password, label: false, placeholder: "Ваш пароль"
+		= f.button :submit, 'Войти', class: "btn btn-large btn-link btn-block"
+	div = link_to 'Зарегистрироваться', signup_path, remote: true
+	div = link_to 'Забыли пароль?', reset_password_path, remote: true

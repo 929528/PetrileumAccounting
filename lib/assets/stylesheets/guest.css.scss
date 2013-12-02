@@ -2,3 +2,45 @@
 @import "font-awesome";
 @import 're_bootstrap';
 @import 'main';
+
+body {
+	background-color: #3A92C8;
+	background: -webkit-radial-gradient(circle,#94D2F8,#3A92C8);
+	background: -moz-radial-gradient(circle,#94d2f8,#3a92c8);
+	background: -ms-radial-gradient(circle,#94d2f8,#3a92c8);
+	margin-top: 50px;
+}
+.container {
+	background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255,.2);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#50990000,endColorstr=#50990000); 
+	padding: 1em;
+}
+.right-panel {
+	color: white;
+	a {
+		font-size: 1.5em;
+	}
+	table {
+		margin-top: 20px;
+	}
+	.popover {
+		color: black;
+	}
+	i.info:hover {
+		cursor: pointer;
+	}
+}
+.well {
+	background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255,.3);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#50990000,endColorstr=#50990000); 
+	border-color: white;
+	.table {
+		border: solid 1px white;
+		th {font-weight: normal;}
+		thead {
+			background-color: white;
+		}
+	}
+}

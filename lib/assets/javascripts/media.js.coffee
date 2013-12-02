@@ -17,7 +17,8 @@ methods =
 
 	request: (path, data) ->
 		timestamp = $.now()
-		this.attr 'timestamp', timestamp
+		media_window = this.closest('.media-window')
+		media_window.attr 'timestamp', timestamp
 		$.ajax path,
 			dataType: 'script',
 			data: 
@@ -27,7 +28,6 @@ methods =
 	submit: (state) ->
 		if state == 'close'
 			this.media 'hide'
-			$('#flash_notice').flash 'hide'
 		else
 			inputs = []
 			inputs.push $("<input>").attr("type", "hidden").attr("name", "status").val(state)
@@ -38,6 +38,7 @@ methods =
 
 	hide: ->
 		@this = this
+		$('#flash_notice').flash 'hide'
 		this.slideUp 300, =>
 			@this.trigger 'hide'
 			@this.data 'show', false
@@ -70,8 +71,6 @@ init_window = (mw) ->
 	that.find('input[data-provide="typeahead"]').each ->
 		$(this).autocomplete 'init'
 	$('.actions').on 'addAction', ->
-		show_notice 'success', 'Талон добавлен в список'
 		that.find('.actions').results 'init'
 	$('.actions').on 'removeAction', ->
-		show_notice 'success', 'Талон удален из списка'
 		that.find('.actions').results 'init'

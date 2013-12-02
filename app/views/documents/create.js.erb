@@ -1,3 +1,5 @@
 $('#list').prepend($("<%=j render @document %>").media('init').addClass('added'))
 $(".media-window[timestamp=<%= @timestamp%>]").media('hide');
-$("#flash_notice").append("<%=j render '/flash_notice' %>").flash('init')
+$("#flash_notice").flash('hide', function() {
+	$("#flash_notice").html("<%=j render '/flash_notice' %>").flash('show', 2000)
+})

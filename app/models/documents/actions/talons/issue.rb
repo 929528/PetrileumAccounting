@@ -2,6 +2,8 @@ class Documents::Actions::Talons::Issue < ActiveRecord::Base
 	belongs_to :talons_issue, inverse_of: :issues
 	belongs_to :talon, class_name: 'Catalogs::Talon'
 
+	scope :customer, -> (customer) { joins(:talons_issue).where(documents_talons_issues: {contract_id: customer.contract_ids}) }
+
 	validate :correct_talon_state
 	validates :talon, presence: true
 	validate :price_present, :expires_present, if: 'self.new_record?'

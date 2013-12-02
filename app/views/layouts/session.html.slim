@@ -1,20 +1,16 @@
 DOCTYPE html
 html
 	head
-  		title Портал XADO
+  		title = full_title yield :title
 		= stylesheet_link_tag "application", 'session',media: "all"
 		= javascript_include_tag 'application', 'session'
 		= csrf_meta_tags
 	body
-		.top
-			#flash_notice.hide
-				== render '/flash_notice'
-		#promotion
-			== render 'catalogs/promotions/slider'
-			/ .cornered-block.blue
-		/ .content.container
-			= yield
-					/ == render 'brands'
-			/ .footer.text-center
-				.container
-					= "© "+DateTime.now.strftime("%Y")+" Химический Концерн ХАДО. Все права защищены"
+		#flash_notice.hide
+			== render partial: 'flash_notice'
+		.wrapper
+			== render partial: 'catalogs/promotions/slider', locals: {promotions: Catalogs::Promotion.all.sample(5)}
+		.content
+			.right-panel
+				= yield
+		

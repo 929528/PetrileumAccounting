@@ -1,4 +1,5 @@
 class PricesController < ApplicationController
+	layout 'journal'
 	def index
 		elements_count = params[:elements_count]
 		@records = PriceRecord.all.order('id DESC').offset(elements_count).limit(8)
@@ -11,13 +12,13 @@ class PricesController < ApplicationController
 		@price = Price.new(price_params).tap {|p| p.user = current_user}
 		if Price.find_by department_id: @price.department.id, product_id: @price.product.id 
 			@price.errors[:base] << "Цена задана в первый раз, необходимо обновить страницу для ее изменения"
-			render partial: 'price_error', locals: {item: @price}
+			render partial: 'errors', locals: {item: @price}
 		else
 			if @price.save
 				flash.now[:success] = "Для продукта: #{@price.product.name}, создана цена: #{@price.value}"
 				render 'add_history'
 			else
-				render partial: 'price_error', locals: {item: @price}
+				render partial: 'errors', locals: {item: @price}
 			end
 		end
 	end
@@ -30,7 +31,7 @@ class PricesController < ApplicationController
 			flash.now[:success] = "Для продукта: #{@price.product.name}, изменена цена: #{@price.value}"
 			render 'add_history'
 		else
-			render partial: 'price_error', locals: {item: @price}
+			render partial: 'errors', locals: {item: @price}
 		end
 	end
 	def show

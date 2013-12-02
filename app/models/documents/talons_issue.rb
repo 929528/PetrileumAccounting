@@ -1,7 +1,7 @@
 class Documents::TalonsIssue < ActiveRecord::Base
 	belongs_to :department, class_name: 'Catalogs::Department'
 	belongs_to :contract, class_name: 'Catalogs::Contract'
-	belongs_to :user, class_name: 'Catalogs::User'
+	belongs_to :user, class_name: 'Catalogs::Employee'
 
 	has_many :issues, class_name: 'Actions::Talons::Issue', validate: false, inverse_of: :talons_issue
 

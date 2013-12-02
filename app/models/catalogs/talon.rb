@@ -4,6 +4,13 @@ class Catalogs::Talon < ActiveRecord::Base
 	belongs_to :product
 	belongs_to :contract
 
+	scope :issued, -> { where(state: Catalogs::Talons::State.find_by_name('issued')) }
+	scope :repaid, -> { where(state: Catalogs::Talons::State.find_by_name('repaid')) }
+	scope :customer, -> (customer) { where(contract_id: customer.contract_ids) }
+	scope :expired, -> { where("expires < ?", Time.now) }
+	scope :expire_on, -> (date) { where("expires < ?", Time.now + date) }
+	scope :active, -> { where("expires > ?", Time.now) }
+
 	VALID_BARCODE_REGEX = /\A[2,5][1-5]\d{8}\z/
 	validates :barcode, presence: true, uniqueness: true
 	validates :barcode, numericality: true, length: {is: 10}, allow_blank: true 

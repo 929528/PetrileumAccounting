@@ -1,0 +1,82 @@
+.container
+	.row-fluid
+		.span9
+			.well
+				.text-right.muted Все талоны
+				table.table.table-hover.table-condensed
+					thead.text-info
+						tr
+							th Номер талона
+							th Продукт
+							th Кол-во /л
+							th Выдан
+							th Действителен /до
+					tbody
+						- @talons.each do |talon|
+							tr class="#{tr_class talon}" 
+								td = talon.barcode
+								td = talon.product.name
+								td = talon.amount.value
+								td = talon.updated_at.strftime "%d/%m/%Y"
+								td = expires talon
+			#accordion.accordion
+				.accordion-group.well.well-small
+					.accordion-heading
+						a.accordion-toggle data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+							.text-right Последние 20 погашений талонов		
+					#collapseOne.accordion-body.collapse
+						.acordion-inner
+							table.table.table-hover.table-condensed
+								thead.text-info
+									tr
+										th Номер талона
+										th Продукт
+										th Кол-во /л
+										th Дата операции
+								tbody
+									- @repaids.each do |repaid|
+										tr
+											td = repaid.talon.barcode
+											td = repaid.talon.product.name
+											td = repaid.talon.amount.value
+											td = repaid.created_at.strftime "%d/%m/%Y"
+				.accordion-group.well.well-small
+					.accordion-heading
+						a.accordion-toggle data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+							.text-right Последние 20 реализаций талонов	
+					#collapseTwo.accordion-body.collapse
+						.acordion-inner
+							table.table.table-hover.table-condensed
+								thead.text-info
+									tr
+										th Номер талона
+										th Продукт
+										th Кол-во /л
+										th Цена /грн
+										th Сумма /грн
+										th Срок годности /дней
+										th Дата операции
+								tbody
+									- @issues.each do |issue|
+										tr
+											td = issue.talon.barcode
+											td = issue.talon.product.name
+											td = issue.talon.amount.value
+											td = issue.price
+											td = issue.price * issue.talon.amount.value
+											td = issue.talons_issue.contract.validity
+											td = issue.updated_at.strftime "%d/%m/%Y"
+		.span3.right-panel
+			.pull-right = content_tag :i,'', class: 'info icon-info-sign icon-3x', data: {placement: 'left', title: "Дополнительная информация", content: 'За дополнительной информацией обращайтесь по телефону (057)-7033434.'}
+			.text-left
+				i.icon-user.icon-4x
+				div = current_user.fullname
+				table.table.table-condensed
+					tbody
+						- @products.each do |product|
+							tr
+								td = product.name
+								td = "%s %s" % [product.talons_count, Russian.p(product.talons_count, 'талон', 'талона', 'талонов')]
+								td = "%s литров" % product.liters
+				.text-center 
+					= link_to "Выход", signout_path, method: :delete

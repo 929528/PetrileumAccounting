@@ -6,11 +6,13 @@ namespace :db do
 		org.departments.build name: "Жуки"
 		org.departments.build name: "Высокий"
 		org.save!
-		Catalogs::User.create!(name: "oleg", 
-			password: "9700477", 
-			password_confirmation: "9700477", 
+		user = Catalogs::Employee.create!(
+			name: "oleg", 
+			surname: "shviryov",
 			email: "929528@gmail.com",
-			department: Catalogs::Department.find_by(name: 'Трактора'))
+			department: Catalogs::Department.find_by(name: 'Трактора')
+			)
+		user.create_profile!(password: "9700477", password_confirmation: "9700477")
 		Catalogs::Talons::State.create!(name: "new")
 		Catalogs::Talons::State.create!(name: "issued")
 		Catalogs::Talons::State.create!(name: "repaid")
@@ -24,8 +26,6 @@ namespace :db do
 		Catalogs::ContractType.create!(name: "Покупка-Продажа", freebie: false)
 		Catalogs::ContractType.create!(name: "Внутренние расходы", freebie: true)
 		Catalogs::ContractType.create!(name: "Внешние обязательства", freebie: false)
-		Catalogs::Users::Role.create!(name: "Guest")
-		Catalogs::Users::Role.create!(name: "Employee")
 		p "ALL DONE !"
 	end
 end
